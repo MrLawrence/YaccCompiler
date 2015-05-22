@@ -16,7 +16,7 @@
 %token ASSIGN VAR
 %token BEG END DO WHILE LESS GREATER EQUAL TRUE FALSE  AND NOT OR
 
-%union { int i; float f; node *n; double d; }
+%union { int i; float f; node *n; }
 %%
 
 program: head stmtlist tail;
@@ -50,7 +50,23 @@ stmt: ID ASSIGN expr SEMICOLON { if (!$1 -> declared) {
 								}
 							};
 
-bool: expr LESS expr { printf("lt "); };
+
+bool: bool OR bool1 { printf("or "); };
+bool: bool1;
+
+bool1: bool1 AND bool2 { printf("and "); };
+bool1: bool2
+
+bool2: NOT bool3 { printf("not ");};
+bool2: bool3
+
+bool3: expr LESS expr { printf("lt "); };
+bool3: expr GREATER expr { printf("gt "); };
+bool3: expr EQUAL expr { printf("eq "); };
+bool3: TRUE { printf("true "); };
+bool3: FALSE { printf("false "); };
+bool3: OPEN bool CLOSE
+
 
 expr: prod;
 expr: expr PLUS prod { printf("add "); };
