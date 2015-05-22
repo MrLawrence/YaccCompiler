@@ -14,7 +14,7 @@
 %token <n> ID
 %token PLUS MINUS TIMES OPEN CLOSE EULER EXP SIN
 %token ASSIGN VAR
-%token BEG END DO WHILE LESS GREATER EQUAL TRUE FALSE  AND NOT OR
+%token BEG END DO WHILE LESS GREATER EQUAL TRUE FALSE  AND NOT OR IF THEN
 
 %union { int i; float f; node *n; }
 %%
@@ -26,7 +26,6 @@ tail: { printf("stroke\n"); };
 
 stmtlist: ;
 stmtlist: stmtlist stmt;
-
 
 stmt: WHILE { printf("{ "); } bool { printf("not { exit } if\n"); } DO stmt { printf("} loop\n"); };
 stmt: BEG stmtlist END;

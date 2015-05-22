@@ -27,6 +27,8 @@ NOT return NOT;
 == return EQUAL;
 TRUE return TRUE;
 FALSE return FALSE;
+IF return IF;
+THEN return THEN;
 \+	return PLUS;
 \-	return MINUS;
 \*	return TIMES;
