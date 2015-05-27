@@ -2,7 +2,7 @@
 #include "symtab.h"
 #include "turtle.tab.h"
 %}	
-
+%option yylineno
 %%
 
 GO	return GO;
@@ -29,6 +29,7 @@ TRUE return TRUE;
 FALSE return FALSE;
 IF return IF;
 THEN return THEN;
+ELSE return ELSE;
 \+	return PLUS;
 \-	return MINUS;
 \*	return TIMES;

@@ -4,10 +4,10 @@ lex.yy.c: turtle.l
 	flex turtle.l
 
 turtle.tab.c: turtle.y
-	bison -d turtle.y
+	bison -d -t -v turtle.y
 
 turtle.tab.h: turtle.y
-	bison -d turtle.y
+	bison -d -t -v turtle.y
 
 turtle: lex.yy.c turtle.tab.c turtle.tab.h symtab.h symtab.c
 	gcc lex.yy.c turtle.tab.c symtab.c -lfl -o turtle
