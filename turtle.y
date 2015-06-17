@@ -38,13 +38,14 @@ decl: VAR ID SEMICOLON { $2 -> declared = 1;
 						printf("/tlt%s 0 def\n", $2 -> symbol); };
 decl: VAR ID ASSIGN expr SEMICOLON { printf(" /tlt%s exch def\n", $2 -> symbol); $2 -> declared = 1; };
 
-decl: PROC ID OPEN CLOSE
+decl: PROC ID { $2 -> declared = 1; printf("/tlt%s {\n", $2 -> symbol); } OPEN CLOSE
 		BEG
 		decllist
 		stmtlist
-		END;
+		END  { printf("} def\n"); };
 
-stmt: ID OPEN CLOSE SEMICOLON;
+stmt: ID OPEN CLOSE SEMICOLON { if (!$1 -> declared) {yyerror("Undeclared Function");}
+				printf("tlt%s ", $1 -> symbol); };
 
 stmt: error SEMICOLON { yyerror("broken statement"); };
 stmt: BEG stmtlist error END { yyerror("broken statement"); };

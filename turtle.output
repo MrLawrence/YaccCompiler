@@ -26,114 +26,117 @@ Grammatik
 
     8 decl: VAR ID SEMICOLON
     9     | VAR ID ASSIGN expr SEMICOLON
-   10     | PROC ID OPEN CLOSE BEG decllist stmtlist END
 
-   11 stmt: ID OPEN CLOSE SEMICOLON
-   12     | error SEMICOLON
-   13     | BEG stmtlist error END
+   10 $@1: %empty
 
-   14 $@1: %empty
+   11 decl: PROC ID $@1 OPEN CLOSE BEG decllist stmtlist END
+
+   12 stmt: ID OPEN CLOSE SEMICOLON
+   13     | error SEMICOLON
+   14     | BEG stmtlist error END
 
    15 $@2: %empty
 
-   16 stmt: WHILE $@1 bool $@2 DO stmt
+   16 $@3: %empty
 
-   17 $@3: %empty
+   17 stmt: WHILE $@2 bool $@3 DO stmt
 
-   18 stmt: BEG $@3 decllist stmtlist END
+   18 $@4: %empty
 
-   19 $@4: %empty
+   19 stmt: BEG $@4 decllist stmtlist END
 
-   20 stmt: IF bool $@4 THEN decllist stmtlist
-   21     | GO SEMICOLON
-   22     | GO expr SEMICOLON
-   23     | NORTH SEMICOLON
-   24     | SOUTH SEMICOLON
-   25     | WEST SEMICOLON
-   26     | EAST SEMICOLON
-   27     | TURNLEFT SEMICOLON
-   28     | TURNRIGHT SEMICOLON
-   29     | TURN expr SEMICOLON
-   30     | THICKNESS NUMBER SEMICOLON
-   31     | ID ASSIGN expr SEMICOLON
+   20 $@5: %empty
 
-   32 bool: bool OR bool1
-   33     | bool1
+   21 stmt: IF bool $@5 THEN decllist stmtlist
+   22     | GO SEMICOLON
+   23     | GO expr SEMICOLON
+   24     | NORTH SEMICOLON
+   25     | SOUTH SEMICOLON
+   26     | WEST SEMICOLON
+   27     | EAST SEMICOLON
+   28     | TURNLEFT SEMICOLON
+   29     | TURNRIGHT SEMICOLON
+   30     | TURN expr SEMICOLON
+   31     | THICKNESS NUMBER SEMICOLON
+   32     | ID ASSIGN expr SEMICOLON
 
-   34 bool1: bool1 AND bool2
-   35      | bool2
+   33 bool: bool OR bool1
+   34     | bool1
 
-   36 bool2: NOT bool3
-   37      | bool3
+   35 bool1: bool1 AND bool2
+   36      | bool2
 
-   38 bool3: expr LESS expr
-   39      | expr GREATER expr
-   40      | expr EQUAL expr
-   41      | TRUE
-   42      | FALSE
-   43      | OPEN bool CLOSE
+   37 bool2: NOT bool3
+   38      | bool3
 
-   44 expr: prod
-   45     | expr PLUS prod
-   46     | expr MINUS prod
+   39 bool3: expr LESS expr
+   40      | expr GREATER expr
+   41      | expr EQUAL expr
+   42      | TRUE
+   43      | FALSE
+   44      | OPEN bool CLOSE
 
-   47 prod: exp
-   48     | prod TIMES exp
+   45 expr: prod
+   46     | expr PLUS prod
+   47     | expr MINUS prod
 
-   49 exp: atomic
-   50    | atomic EXP exp
+   48 prod: exp
+   49     | prod TIMES exp
 
-   51 atomic: NUMBER
-   52       | FLOAT
-   53       | OPEN expr CLOSE
-   54       | OPEN error CLOSE
-   55       | EULER
-   56       | ID
+   50 exp: atomic
+   51    | atomic EXP exp
+
+   52 atomic: NUMBER
+   53       | FLOAT
+   54       | OPEN expr CLOSE
+   55       | OPEN error CLOSE
+   56       | EULER
+   57       | ID
 
 
 Terminale und die Regeln, in denen sie verwendet werden
 
 $end (0) 0
-error (256) 12 13 54
-GO (258) 21 22
-SEMICOLON (259) 8 9 11 12 21 22 23 24 25 26 27 28 29 30 31
-NORTH (260) 23
-SOUTH (261) 24
-WEST (262) 25
-EAST (263) 26
-TURNLEFT (264) 27
-TURNRIGHT (265) 28
-TURN (266) 29
-THICKNESS (267) 30
-NUMBER (268) 30 51
-FLOAT (269) 52
-ID (270) 8 9 10 11 31 56
-PLUS (271) 45
-MINUS (272) 46
-TIMES (273) 48
-OPEN (274) 10 11 43 53 54
-CLOSE (275) 10 11 43 53 54
-EULER (276) 55
-EXP (277) 50
+error (256) 13 14 55
+GO (258) 22 23
+SEMICOLON (259) 8 9 12 13 22 23 24 25 26 27 28 29 30 31 32
+NORTH (260) 24
+SOUTH (261) 25
+WEST (262) 26
+EAST (263) 27
+TURNLEFT (264) 28
+TURNRIGHT (265) 29
+TURN (266) 30
+THICKNESS (267) 31
+NUMBER (268) 31 52
+FLOAT (269) 53
+ID (270) 8 9 11 12 32 57
+PLUS (271) 46
+MINUS (272) 47
+TIMES (273) 49
+OPEN (274) 11 12 44 54 55
+CLOSE (275) 11 12 44 54 55
+EULER (276) 56
+EXP (277) 51
 SIN (278)
-ASSIGN (279) 9 31
+ASSIGN (279) 9 32
 VAR (280) 8 9
-BEG (281) 10 13 18
-END (282) 10 13 18
-DO (283) 16
-WHILE (284) 16
-LESS (285) 38
-GREATER (286) 39
-EQUAL (287) 40
-TRUE (288) 41
-FALSE (289) 42
-AND (290) 34
-NOT (291) 36
-OR (292) 32
-IF (293) 20
-THEN (294) 20
+BEG (281) 11 14 19
+END (282) 11 14 19
+DO (283) 17
+WHILE (284) 17
+LESS (285) 39
+GREATER (286) 40
+EQUAL (287) 41
+TRUE (288) 42
+FALSE (289) 43
+AND (290) 35
+NOT (291) 37
+OR (292) 33
+IF (293) 21
+THEN (294) 21
 ELSE (295)
-PROC (296) 10
+PROC (296) 11
 
 
 Nicht-Terminal und die Regeln, in denen sie verwendet werden
@@ -147,42 +150,44 @@ head (44)
 tail (45)
     auf der linken Seite: 3, auf der rechten Seite: 1
 stmtlist (46)
-    auf der linken Seite: 4 5, auf der rechten Seite: 1 5 10 13 18
-    20
+    auf der linken Seite: 4 5, auf der rechten Seite: 1 5 11 14 19
+    21
 decllist (47)
-    auf der linken Seite: 6 7, auf der rechten Seite: 1 7 10 18 20
+    auf der linken Seite: 6 7, auf der rechten Seite: 1 7 11 19 21
 decl (48)
-    auf der linken Seite: 8 9 10, auf der rechten Seite: 7
-stmt (49)
-    auf der linken Seite: 11 12 13 16 18 20 21 22 23 24 25 26 27 28
-    29 30 31, auf der rechten Seite: 5 16
-$@1 (50)
-    auf der linken Seite: 14, auf der rechten Seite: 16
+    auf der linken Seite: 8 9 11, auf der rechten Seite: 7
+$@1 (49)
+    auf der linken Seite: 10, auf der rechten Seite: 11
+stmt (50)
+    auf der linken Seite: 12 13 14 17 19 21 22 23 24 25 26 27 28 29
+    30 31 32, auf der rechten Seite: 5 17
 $@2 (51)
-    auf der linken Seite: 15, auf der rechten Seite: 16
+    auf der linken Seite: 15, auf der rechten Seite: 17
 $@3 (52)
-    auf der linken Seite: 17, auf der rechten Seite: 18
+    auf der linken Seite: 16, auf der rechten Seite: 17
 $@4 (53)
-    auf der linken Seite: 19, auf der rechten Seite: 20
-bool (54)
-    auf der linken Seite: 32 33, auf der rechten Seite: 16 20 32 43
-bool1 (55)
-    auf der linken Seite: 34 35, auf der rechten Seite: 32 33 34
-bool2 (56)
-    auf der linken Seite: 36 37, auf der rechten Seite: 34 35
-bool3 (57)
-    auf der linken Seite: 38 39 40 41 42 43, auf der rechten Seite:
-    36 37
-expr (58)
-    auf der linken Seite: 44 45 46, auf der rechten Seite: 9 22 29
-    31 38 39 40 45 46 53
-prod (59)
-    auf der linken Seite: 47 48, auf der rechten Seite: 44 45 46 48
-exp (60)
-    auf der linken Seite: 49 50, auf der rechten Seite: 47 48 50
-atomic (61)
-    auf der linken Seite: 51 52 53 54 55 56, auf der rechten Seite:
-    49 50
+    auf der linken Seite: 18, auf der rechten Seite: 19
+$@5 (54)
+    auf der linken Seite: 20, auf der rechten Seite: 21
+bool (55)
+    auf der linken Seite: 33 34, auf der rechten Seite: 17 21 33 44
+bool1 (56)
+    auf der linken Seite: 35 36, auf der rechten Seite: 33 34 35
+bool2 (57)
+    auf der linken Seite: 37 38, auf der rechten Seite: 35 36
+bool3 (58)
+    auf der linken Seite: 39 40 41 42 43 44, auf der rechten Seite:
+    37 38
+expr (59)
+    auf der linken Seite: 45 46 47, auf der rechten Seite: 9 23 30
+    32 39 40 41 46 47 54
+prod (60)
+    auf der linken Seite: 48 49, auf der rechten Seite: 45 46 47 49
+exp (61)
+    auf der linken Seite: 50 51, auf der rechten Seite: 48 49 51
+atomic (62)
+    auf der linken Seite: 52 53 54 55 56 57, auf der rechten Seite:
+    50 51
 
 
 Zustand 0
@@ -242,7 +247,7 @@ Zustand 5
 
 Zustand 6
 
-   10 decl: PROC . ID OPEN CLOSE BEG decllist stmtlist END
+   11 decl: PROC . ID $@1 OPEN CLOSE BEG decllist stmtlist END
 
     ID  schiebe und gehe zu Zustand 10 über
 
@@ -291,22 +296,24 @@ Zustand 9
 
 Zustand 10
 
-   10 decl: PROC ID . OPEN CLOSE BEG decllist stmtlist END
+   11 decl: PROC ID . $@1 OPEN CLOSE BEG decllist stmtlist END
 
-    OPEN  schiebe und gehe zu Zustand 29 über
+    $default  reduziere mit Regel 10 ($@1)
+
+    $@1  gehe zu Zustand 29 über
 
 
 Zustand 11
 
-   12 stmt: error . SEMICOLON
+   13 stmt: error . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 30 über
 
 
 Zustand 12
 
-   21 stmt: GO . SEMICOLON
-   22     | GO . expr SEMICOLON
+   22 stmt: GO . SEMICOLON
+   23     | GO . expr SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 31 über
     NUMBER     schiebe und gehe zu Zustand 32 über
@@ -323,49 +330,49 @@ Zustand 12
 
 Zustand 13
 
-   23 stmt: NORTH . SEMICOLON
+   24 stmt: NORTH . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 41 über
 
 
 Zustand 14
 
-   24 stmt: SOUTH . SEMICOLON
+   25 stmt: SOUTH . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 42 über
 
 
 Zustand 15
 
-   25 stmt: WEST . SEMICOLON
+   26 stmt: WEST . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 43 über
 
 
 Zustand 16
 
-   26 stmt: EAST . SEMICOLON
+   27 stmt: EAST . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 44 über
 
 
 Zustand 17
 
-   27 stmt: TURNLEFT . SEMICOLON
+   28 stmt: TURNLEFT . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 45 über
 
 
 Zustand 18
 
-   28 stmt: TURNRIGHT . SEMICOLON
+   29 stmt: TURNRIGHT . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 46 über
 
 
 Zustand 19
 
-   29 stmt: TURN . expr SEMICOLON
+   30 stmt: TURN . expr SEMICOLON
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -381,15 +388,15 @@ Zustand 19
 
 Zustand 20
 
-   30 stmt: THICKNESS . NUMBER SEMICOLON
+   31 stmt: THICKNESS . NUMBER SEMICOLON
 
     NUMBER  schiebe und gehe zu Zustand 48 über
 
 
 Zustand 21
 
-   11 stmt: ID . OPEN CLOSE SEMICOLON
-   31     | ID . ASSIGN expr SEMICOLON
+   12 stmt: ID . OPEN CLOSE SEMICOLON
+   32     | ID . ASSIGN expr SEMICOLON
 
     OPEN    schiebe und gehe zu Zustand 49 über
     ASSIGN  schiebe und gehe zu Zustand 50 über
@@ -397,58 +404,58 @@ Zustand 21
 
 Zustand 22
 
-   13 stmt: BEG . stmtlist error END
-   18     | BEG . $@3 decllist stmtlist END
+   14 stmt: BEG . stmtlist error END
+   19     | BEG . $@4 decllist stmtlist END
 
     error      reduziere mit Regel 4 (stmtlist)
-    error      [reduziere mit Regel 17 ($@3)]
+    error      [reduziere mit Regel 18 ($@4)]
     GO         reduziere mit Regel 4 (stmtlist)
-    GO         [reduziere mit Regel 17 ($@3)]
+    GO         [reduziere mit Regel 18 ($@4)]
     NORTH      reduziere mit Regel 4 (stmtlist)
-    NORTH      [reduziere mit Regel 17 ($@3)]
+    NORTH      [reduziere mit Regel 18 ($@4)]
     SOUTH      reduziere mit Regel 4 (stmtlist)
-    SOUTH      [reduziere mit Regel 17 ($@3)]
+    SOUTH      [reduziere mit Regel 18 ($@4)]
     WEST       reduziere mit Regel 4 (stmtlist)
-    WEST       [reduziere mit Regel 17 ($@3)]
+    WEST       [reduziere mit Regel 18 ($@4)]
     EAST       reduziere mit Regel 4 (stmtlist)
-    EAST       [reduziere mit Regel 17 ($@3)]
+    EAST       [reduziere mit Regel 18 ($@4)]
     TURNLEFT   reduziere mit Regel 4 (stmtlist)
-    TURNLEFT   [reduziere mit Regel 17 ($@3)]
+    TURNLEFT   [reduziere mit Regel 18 ($@4)]
     TURNRIGHT  reduziere mit Regel 4 (stmtlist)
-    TURNRIGHT  [reduziere mit Regel 17 ($@3)]
+    TURNRIGHT  [reduziere mit Regel 18 ($@4)]
     TURN       reduziere mit Regel 4 (stmtlist)
-    TURN       [reduziere mit Regel 17 ($@3)]
+    TURN       [reduziere mit Regel 18 ($@4)]
     THICKNESS  reduziere mit Regel 4 (stmtlist)
-    THICKNESS  [reduziere mit Regel 17 ($@3)]
+    THICKNESS  [reduziere mit Regel 18 ($@4)]
     ID         reduziere mit Regel 4 (stmtlist)
-    ID         [reduziere mit Regel 17 ($@3)]
-    VAR        reduziere mit Regel 17 ($@3)
+    ID         [reduziere mit Regel 18 ($@4)]
+    VAR        reduziere mit Regel 18 ($@4)
     BEG        reduziere mit Regel 4 (stmtlist)
-    BEG        [reduziere mit Regel 17 ($@3)]
-    END        reduziere mit Regel 17 ($@3)
+    BEG        [reduziere mit Regel 18 ($@4)]
+    END        reduziere mit Regel 18 ($@4)
     WHILE      reduziere mit Regel 4 (stmtlist)
-    WHILE      [reduziere mit Regel 17 ($@3)]
+    WHILE      [reduziere mit Regel 18 ($@4)]
     IF         reduziere mit Regel 4 (stmtlist)
-    IF         [reduziere mit Regel 17 ($@3)]
-    PROC       reduziere mit Regel 17 ($@3)
+    IF         [reduziere mit Regel 18 ($@4)]
+    PROC       reduziere mit Regel 18 ($@4)
     $default   reduziere mit Regel 4 (stmtlist)
 
     stmtlist  gehe zu Zustand 51 über
-    $@3       gehe zu Zustand 52 über
+    $@4       gehe zu Zustand 52 über
 
 
 Zustand 23
 
-   16 stmt: WHILE . $@1 bool $@2 DO stmt
+   17 stmt: WHILE . $@2 bool $@3 DO stmt
 
-    $default  reduziere mit Regel 14 ($@1)
+    $default  reduziere mit Regel 15 ($@2)
 
-    $@1  gehe zu Zustand 53 über
+    $@2  gehe zu Zustand 53 über
 
 
 Zustand 24
 
-   20 stmt: IF . bool $@4 THEN decllist stmtlist
+   21 stmt: IF . bool $@5 THEN decllist stmtlist
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -508,50 +515,50 @@ Zustand 28
 
 Zustand 29
 
-   10 decl: PROC ID OPEN . CLOSE BEG decllist stmtlist END
+   11 decl: PROC ID $@1 . OPEN CLOSE BEG decllist stmtlist END
 
-    CLOSE  schiebe und gehe zu Zustand 64 über
+    OPEN  schiebe und gehe zu Zustand 64 über
 
 
 Zustand 30
 
-   12 stmt: error SEMICOLON .
+   13 stmt: error SEMICOLON .
 
-    $default  reduziere mit Regel 12 (stmt)
+    $default  reduziere mit Regel 13 (stmt)
 
 
 Zustand 31
 
-   21 stmt: GO SEMICOLON .
+   22 stmt: GO SEMICOLON .
 
-    $default  reduziere mit Regel 21 (stmt)
+    $default  reduziere mit Regel 22 (stmt)
 
 
 Zustand 32
 
-   51 atomic: NUMBER .
-
-    $default  reduziere mit Regel 51 (atomic)
-
-
-Zustand 33
-
-   52 atomic: FLOAT .
+   52 atomic: NUMBER .
 
     $default  reduziere mit Regel 52 (atomic)
 
 
+Zustand 33
+
+   53 atomic: FLOAT .
+
+    $default  reduziere mit Regel 53 (atomic)
+
+
 Zustand 34
 
-   56 atomic: ID .
+   57 atomic: ID .
 
-    $default  reduziere mit Regel 56 (atomic)
+    $default  reduziere mit Regel 57 (atomic)
 
 
 Zustand 35
 
-   53 atomic: OPEN . expr CLOSE
-   54       | OPEN . error CLOSE
+   54 atomic: OPEN . expr CLOSE
+   55       | OPEN . error CLOSE
 
     error   schiebe und gehe zu Zustand 65 über
     NUMBER  schiebe und gehe zu Zustand 32 über
@@ -568,16 +575,16 @@ Zustand 35
 
 Zustand 36
 
-   55 atomic: EULER .
+   56 atomic: EULER .
 
-    $default  reduziere mit Regel 55 (atomic)
+    $default  reduziere mit Regel 56 (atomic)
 
 
 Zustand 37
 
-   22 stmt: GO expr . SEMICOLON
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
+   23 stmt: GO expr . SEMICOLON
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
 
     SEMICOLON  schiebe und gehe zu Zustand 67 über
     PLUS       schiebe und gehe zu Zustand 68 über
@@ -586,78 +593,78 @@ Zustand 37
 
 Zustand 38
 
-   44 expr: prod .
-   48 prod: prod . TIMES exp
+   45 expr: prod .
+   49 prod: prod . TIMES exp
 
     TIMES  schiebe und gehe zu Zustand 70 über
 
-    $default  reduziere mit Regel 44 (expr)
+    $default  reduziere mit Regel 45 (expr)
 
 
 Zustand 39
 
-   47 prod: exp .
+   48 prod: exp .
 
-    $default  reduziere mit Regel 47 (prod)
+    $default  reduziere mit Regel 48 (prod)
 
 
 Zustand 40
 
-   49 exp: atomic .
-   50    | atomic . EXP exp
+   50 exp: atomic .
+   51    | atomic . EXP exp
 
     EXP  schiebe und gehe zu Zustand 71 über
 
-    $default  reduziere mit Regel 49 (exp)
+    $default  reduziere mit Regel 50 (exp)
 
 
 Zustand 41
 
-   23 stmt: NORTH SEMICOLON .
-
-    $default  reduziere mit Regel 23 (stmt)
-
-
-Zustand 42
-
-   24 stmt: SOUTH SEMICOLON .
+   24 stmt: NORTH SEMICOLON .
 
     $default  reduziere mit Regel 24 (stmt)
 
 
-Zustand 43
+Zustand 42
 
-   25 stmt: WEST SEMICOLON .
+   25 stmt: SOUTH SEMICOLON .
 
     $default  reduziere mit Regel 25 (stmt)
 
 
-Zustand 44
+Zustand 43
 
-   26 stmt: EAST SEMICOLON .
+   26 stmt: WEST SEMICOLON .
 
     $default  reduziere mit Regel 26 (stmt)
 
 
-Zustand 45
+Zustand 44
 
-   27 stmt: TURNLEFT SEMICOLON .
+   27 stmt: EAST SEMICOLON .
 
     $default  reduziere mit Regel 27 (stmt)
 
 
-Zustand 46
+Zustand 45
 
-   28 stmt: TURNRIGHT SEMICOLON .
+   28 stmt: TURNLEFT SEMICOLON .
 
     $default  reduziere mit Regel 28 (stmt)
 
 
+Zustand 46
+
+   29 stmt: TURNRIGHT SEMICOLON .
+
+    $default  reduziere mit Regel 29 (stmt)
+
+
 Zustand 47
 
-   29 stmt: TURN expr . SEMICOLON
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
+   30 stmt: TURN expr . SEMICOLON
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
 
     SEMICOLON  schiebe und gehe zu Zustand 72 über
     PLUS       schiebe und gehe zu Zustand 68 über
@@ -666,21 +673,21 @@ Zustand 47
 
 Zustand 48
 
-   30 stmt: THICKNESS NUMBER . SEMICOLON
+   31 stmt: THICKNESS NUMBER . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 73 über
 
 
 Zustand 49
 
-   11 stmt: ID OPEN . CLOSE SEMICOLON
+   12 stmt: ID OPEN . CLOSE SEMICOLON
 
     CLOSE  schiebe und gehe zu Zustand 74 über
 
 
 Zustand 50
 
-   31 stmt: ID ASSIGN . expr SEMICOLON
+   32 stmt: ID ASSIGN . expr SEMICOLON
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -697,7 +704,7 @@ Zustand 50
 Zustand 51
 
     5 stmtlist: stmtlist . stmt
-   13 stmt: BEG stmtlist . error END
+   14 stmt: BEG stmtlist . error END
 
     error      schiebe und gehe zu Zustand 76 über
     GO         schiebe und gehe zu Zustand 12 über
@@ -719,7 +726,7 @@ Zustand 51
 
 Zustand 52
 
-   18 stmt: BEG $@3 . decllist stmtlist END
+   19 stmt: BEG $@4 . decllist stmtlist END
 
     $default  reduziere mit Regel 6 (decllist)
 
@@ -728,7 +735,7 @@ Zustand 52
 
 Zustand 53
 
-   16 stmt: WHILE $@1 . bool $@2 DO stmt
+   17 stmt: WHILE $@2 . bool $@3 DO stmt
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -751,9 +758,9 @@ Zustand 53
 
 Zustand 54
 
-   43 bool3: OPEN . bool CLOSE
-   53 atomic: OPEN . expr CLOSE
-   54       | OPEN . error CLOSE
+   44 bool3: OPEN . bool CLOSE
+   54 atomic: OPEN . expr CLOSE
+   55       | OPEN . error CLOSE
 
     error   schiebe und gehe zu Zustand 65 über
     NUMBER  schiebe und gehe zu Zustand 32 über
@@ -777,21 +784,21 @@ Zustand 54
 
 Zustand 55
 
-   41 bool3: TRUE .
-
-    $default  reduziere mit Regel 41 (bool3)
-
-
-Zustand 56
-
-   42 bool3: FALSE .
+   42 bool3: TRUE .
 
     $default  reduziere mit Regel 42 (bool3)
 
 
+Zustand 56
+
+   43 bool3: FALSE .
+
+    $default  reduziere mit Regel 43 (bool3)
+
+
 Zustand 57
 
-   36 bool2: NOT . bool3
+   37 bool2: NOT . bool3
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -810,47 +817,47 @@ Zustand 57
 
 Zustand 58
 
-   20 stmt: IF bool . $@4 THEN decllist stmtlist
-   32 bool: bool . OR bool1
+   21 stmt: IF bool . $@5 THEN decllist stmtlist
+   33 bool: bool . OR bool1
 
     OR  schiebe und gehe zu Zustand 82 über
 
-    $default  reduziere mit Regel 19 ($@4)
+    $default  reduziere mit Regel 20 ($@5)
 
-    $@4  gehe zu Zustand 83 über
+    $@5  gehe zu Zustand 83 über
 
 
 Zustand 59
 
-   33 bool: bool1 .
-   34 bool1: bool1 . AND bool2
+   34 bool: bool1 .
+   35 bool1: bool1 . AND bool2
 
     AND  schiebe und gehe zu Zustand 84 über
 
-    $default  reduziere mit Regel 33 (bool)
+    $default  reduziere mit Regel 34 (bool)
 
 
 Zustand 60
 
-   35 bool1: bool2 .
+   36 bool1: bool2 .
 
-    $default  reduziere mit Regel 35 (bool1)
+    $default  reduziere mit Regel 36 (bool1)
 
 
 Zustand 61
 
-   37 bool2: bool3 .
+   38 bool2: bool3 .
 
-    $default  reduziere mit Regel 37 (bool2)
+    $default  reduziere mit Regel 38 (bool2)
 
 
 Zustand 62
 
-   38 bool3: expr . LESS expr
-   39      | expr . GREATER expr
-   40      | expr . EQUAL expr
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
+   39 bool3: expr . LESS expr
+   40      | expr . GREATER expr
+   41      | expr . EQUAL expr
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
 
     PLUS     schiebe und gehe zu Zustand 68 über
     MINUS    schiebe und gehe zu Zustand 69 über
@@ -862,8 +869,8 @@ Zustand 62
 Zustand 63
 
     9 decl: VAR ID ASSIGN expr . SEMICOLON
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
 
     SEMICOLON  schiebe und gehe zu Zustand 88 über
     PLUS       schiebe und gehe zu Zustand 68 über
@@ -872,23 +879,23 @@ Zustand 63
 
 Zustand 64
 
-   10 decl: PROC ID OPEN CLOSE . BEG decllist stmtlist END
+   11 decl: PROC ID $@1 OPEN . CLOSE BEG decllist stmtlist END
 
-    BEG  schiebe und gehe zu Zustand 89 über
+    CLOSE  schiebe und gehe zu Zustand 89 über
 
 
 Zustand 65
 
-   54 atomic: OPEN error . CLOSE
+   55 atomic: OPEN error . CLOSE
 
     CLOSE  schiebe und gehe zu Zustand 90 über
 
 
 Zustand 66
 
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
-   53 atomic: OPEN expr . CLOSE
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
+   54 atomic: OPEN expr . CLOSE
 
     PLUS   schiebe und gehe zu Zustand 68 über
     MINUS  schiebe und gehe zu Zustand 69 über
@@ -897,14 +904,14 @@ Zustand 66
 
 Zustand 67
 
-   22 stmt: GO expr SEMICOLON .
+   23 stmt: GO expr SEMICOLON .
 
-    $default  reduziere mit Regel 22 (stmt)
+    $default  reduziere mit Regel 23 (stmt)
 
 
 Zustand 68
 
-   45 expr: expr PLUS . prod
+   46 expr: expr PLUS . prod
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -919,7 +926,7 @@ Zustand 68
 
 Zustand 69
 
-   46 expr: expr MINUS . prod
+   47 expr: expr MINUS . prod
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -934,7 +941,7 @@ Zustand 69
 
 Zustand 70
 
-   48 prod: prod TIMES . exp
+   49 prod: prod TIMES . exp
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -948,7 +955,7 @@ Zustand 70
 
 Zustand 71
 
-   50 exp: atomic EXP . exp
+   51 exp: atomic EXP . exp
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -962,30 +969,30 @@ Zustand 71
 
 Zustand 72
 
-   29 stmt: TURN expr SEMICOLON .
-
-    $default  reduziere mit Regel 29 (stmt)
-
-
-Zustand 73
-
-   30 stmt: THICKNESS NUMBER SEMICOLON .
+   30 stmt: TURN expr SEMICOLON .
 
     $default  reduziere mit Regel 30 (stmt)
 
 
+Zustand 73
+
+   31 stmt: THICKNESS NUMBER SEMICOLON .
+
+    $default  reduziere mit Regel 31 (stmt)
+
+
 Zustand 74
 
-   11 stmt: ID OPEN CLOSE . SEMICOLON
+   12 stmt: ID OPEN CLOSE . SEMICOLON
 
     SEMICOLON  schiebe und gehe zu Zustand 96 über
 
 
 Zustand 75
 
-   31 stmt: ID ASSIGN expr . SEMICOLON
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
+   32 stmt: ID ASSIGN expr . SEMICOLON
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
 
     SEMICOLON  schiebe und gehe zu Zustand 97 über
     PLUS       schiebe und gehe zu Zustand 68 über
@@ -994,8 +1001,8 @@ Zustand 75
 
 Zustand 76
 
-   12 stmt: error . SEMICOLON
-   13     | BEG stmtlist error . END
+   13 stmt: error . SEMICOLON
+   14     | BEG stmtlist error . END
 
     SEMICOLON  schiebe und gehe zu Zustand 30 über
     END        schiebe und gehe zu Zustand 98 über
@@ -1004,7 +1011,7 @@ Zustand 76
 Zustand 77
 
     7 decllist: decllist . decl
-   18 stmt: BEG $@3 decllist . stmtlist END
+   19 stmt: BEG $@4 decllist . stmtlist END
 
     VAR   schiebe und gehe zu Zustand 5 über
     PROC  schiebe und gehe zu Zustand 6 über
@@ -1017,20 +1024,20 @@ Zustand 77
 
 Zustand 78
 
-   16 stmt: WHILE $@1 bool . $@2 DO stmt
-   32 bool: bool . OR bool1
+   17 stmt: WHILE $@2 bool . $@3 DO stmt
+   33 bool: bool . OR bool1
 
     OR  schiebe und gehe zu Zustand 82 über
 
-    $default  reduziere mit Regel 15 ($@2)
+    $default  reduziere mit Regel 16 ($@3)
 
-    $@2  gehe zu Zustand 100 über
+    $@3  gehe zu Zustand 100 über
 
 
 Zustand 79
 
-   32 bool: bool . OR bool1
-   43 bool3: OPEN bool . CLOSE
+   33 bool: bool . OR bool1
+   44 bool3: OPEN bool . CLOSE
 
     CLOSE  schiebe und gehe zu Zustand 101 über
     OR     schiebe und gehe zu Zustand 82 über
@@ -1038,12 +1045,12 @@ Zustand 79
 
 Zustand 80
 
-   38 bool3: expr . LESS expr
-   39      | expr . GREATER expr
-   40      | expr . EQUAL expr
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
-   53 atomic: OPEN expr . CLOSE
+   39 bool3: expr . LESS expr
+   40      | expr . GREATER expr
+   41      | expr . EQUAL expr
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
+   54 atomic: OPEN expr . CLOSE
 
     PLUS     schiebe und gehe zu Zustand 68 über
     MINUS    schiebe und gehe zu Zustand 69 über
@@ -1055,14 +1062,14 @@ Zustand 80
 
 Zustand 81
 
-   36 bool2: NOT bool3 .
+   37 bool2: NOT bool3 .
 
-    $default  reduziere mit Regel 36 (bool2)
+    $default  reduziere mit Regel 37 (bool2)
 
 
 Zustand 82
 
-   32 bool: bool OR . bool1
+   33 bool: bool OR . bool1
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -1084,14 +1091,14 @@ Zustand 82
 
 Zustand 83
 
-   20 stmt: IF bool $@4 . THEN decllist stmtlist
+   21 stmt: IF bool $@5 . THEN decllist stmtlist
 
     THEN  schiebe und gehe zu Zustand 103 über
 
 
 Zustand 84
 
-   34 bool1: bool1 AND . bool2
+   35 bool1: bool1 AND . bool2
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -1112,7 +1119,7 @@ Zustand 84
 
 Zustand 85
 
-   38 bool3: expr LESS . expr
+   39 bool3: expr LESS . expr
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -1128,7 +1135,7 @@ Zustand 85
 
 Zustand 86
 
-   39 bool3: expr GREATER . expr
+   40 bool3: expr GREATER . expr
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -1144,7 +1151,7 @@ Zustand 86
 
 Zustand 87
 
-   40 bool3: expr EQUAL . expr
+   41 bool3: expr EQUAL . expr
 
     NUMBER  schiebe und gehe zu Zustand 32 über
     FLOAT   schiebe und gehe zu Zustand 33 über
@@ -1167,86 +1174,84 @@ Zustand 88
 
 Zustand 89
 
-   10 decl: PROC ID OPEN CLOSE BEG . decllist stmtlist END
+   11 decl: PROC ID $@1 OPEN CLOSE . BEG decllist stmtlist END
 
-    $default  reduziere mit Regel 6 (decllist)
-
-    decllist  gehe zu Zustand 108 über
+    BEG  schiebe und gehe zu Zustand 108 über
 
 
 Zustand 90
 
-   54 atomic: OPEN error CLOSE .
+   55 atomic: OPEN error CLOSE .
 
-    $default  reduziere mit Regel 54 (atomic)
+    $default  reduziere mit Regel 55 (atomic)
 
 
 Zustand 91
 
-   53 atomic: OPEN expr CLOSE .
+   54 atomic: OPEN expr CLOSE .
 
-    $default  reduziere mit Regel 53 (atomic)
+    $default  reduziere mit Regel 54 (atomic)
 
 
 Zustand 92
 
-   45 expr: expr PLUS prod .
-   48 prod: prod . TIMES exp
-
-    TIMES  schiebe und gehe zu Zustand 70 über
-
-    $default  reduziere mit Regel 45 (expr)
-
-
-Zustand 93
-
-   46 expr: expr MINUS prod .
-   48 prod: prod . TIMES exp
+   46 expr: expr PLUS prod .
+   49 prod: prod . TIMES exp
 
     TIMES  schiebe und gehe zu Zustand 70 über
 
     $default  reduziere mit Regel 46 (expr)
 
 
+Zustand 93
+
+   47 expr: expr MINUS prod .
+   49 prod: prod . TIMES exp
+
+    TIMES  schiebe und gehe zu Zustand 70 über
+
+    $default  reduziere mit Regel 47 (expr)
+
+
 Zustand 94
 
-   48 prod: prod TIMES exp .
+   49 prod: prod TIMES exp .
 
-    $default  reduziere mit Regel 48 (prod)
+    $default  reduziere mit Regel 49 (prod)
 
 
 Zustand 95
 
-   50 exp: atomic EXP exp .
+   51 exp: atomic EXP exp .
 
-    $default  reduziere mit Regel 50 (exp)
+    $default  reduziere mit Regel 51 (exp)
 
 
 Zustand 96
 
-   11 stmt: ID OPEN CLOSE SEMICOLON .
+   12 stmt: ID OPEN CLOSE SEMICOLON .
 
-    $default  reduziere mit Regel 11 (stmt)
+    $default  reduziere mit Regel 12 (stmt)
 
 
 Zustand 97
 
-   31 stmt: ID ASSIGN expr SEMICOLON .
+   32 stmt: ID ASSIGN expr SEMICOLON .
 
-    $default  reduziere mit Regel 31 (stmt)
+    $default  reduziere mit Regel 32 (stmt)
 
 
 Zustand 98
 
-   13 stmt: BEG stmtlist error END .
+   14 stmt: BEG stmtlist error END .
 
-    $default  reduziere mit Regel 13 (stmt)
+    $default  reduziere mit Regel 14 (stmt)
 
 
 Zustand 99
 
     5 stmtlist: stmtlist . stmt
-   18 stmt: BEG $@3 decllist stmtlist . END
+   19 stmt: BEG $@4 decllist stmtlist . END
 
     error      schiebe und gehe zu Zustand 11 über
     GO         schiebe und gehe zu Zustand 12 über
@@ -1269,31 +1274,31 @@ Zustand 99
 
 Zustand 100
 
-   16 stmt: WHILE $@1 bool $@2 . DO stmt
+   17 stmt: WHILE $@2 bool $@3 . DO stmt
 
     DO  schiebe und gehe zu Zustand 110 über
 
 
 Zustand 101
 
-   43 bool3: OPEN bool CLOSE .
+   44 bool3: OPEN bool CLOSE .
 
-    $default  reduziere mit Regel 43 (bool3)
+    $default  reduziere mit Regel 44 (bool3)
 
 
 Zustand 102
 
-   32 bool: bool OR bool1 .
-   34 bool1: bool1 . AND bool2
+   33 bool: bool OR bool1 .
+   35 bool1: bool1 . AND bool2
 
     AND  schiebe und gehe zu Zustand 84 über
 
-    $default  reduziere mit Regel 32 (bool)
+    $default  reduziere mit Regel 33 (bool)
 
 
 Zustand 103
 
-   20 stmt: IF bool $@4 THEN . decllist stmtlist
+   21 stmt: IF bool $@5 THEN . decllist stmtlist
 
     $default  reduziere mit Regel 6 (decllist)
 
@@ -1302,28 +1307,16 @@ Zustand 103
 
 Zustand 104
 
-   34 bool1: bool1 AND bool2 .
+   35 bool1: bool1 AND bool2 .
 
-    $default  reduziere mit Regel 34 (bool1)
+    $default  reduziere mit Regel 35 (bool1)
 
 
 Zustand 105
 
-   38 bool3: expr LESS expr .
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
-
-    PLUS   schiebe und gehe zu Zustand 68 über
-    MINUS  schiebe und gehe zu Zustand 69 über
-
-    $default  reduziere mit Regel 38 (bool3)
-
-
-Zustand 106
-
-   39 bool3: expr GREATER expr .
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
+   39 bool3: expr LESS expr .
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
 
     PLUS   schiebe und gehe zu Zustand 68 über
     MINUS  schiebe und gehe zu Zustand 69 über
@@ -1331,11 +1324,11 @@ Zustand 106
     $default  reduziere mit Regel 39 (bool3)
 
 
-Zustand 107
+Zustand 106
 
-   40 bool3: expr EQUAL expr .
-   45 expr: expr . PLUS prod
-   46     | expr . MINUS prod
+   40 bool3: expr GREATER expr .
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
 
     PLUS   schiebe und gehe zu Zustand 68 über
     MINUS  schiebe und gehe zu Zustand 69 über
@@ -1343,30 +1336,37 @@ Zustand 107
     $default  reduziere mit Regel 40 (bool3)
 
 
+Zustand 107
+
+   41 bool3: expr EQUAL expr .
+   46 expr: expr . PLUS prod
+   47     | expr . MINUS prod
+
+    PLUS   schiebe und gehe zu Zustand 68 über
+    MINUS  schiebe und gehe zu Zustand 69 über
+
+    $default  reduziere mit Regel 41 (bool3)
+
+
 Zustand 108
 
-    7 decllist: decllist . decl
-   10 decl: PROC ID OPEN CLOSE BEG decllist . stmtlist END
+   11 decl: PROC ID $@1 OPEN CLOSE BEG . decllist stmtlist END
 
-    VAR   schiebe und gehe zu Zustand 5 über
-    PROC  schiebe und gehe zu Zustand 6 über
+    $default  reduziere mit Regel 6 (decllist)
 
-    $default  reduziere mit Regel 4 (stmtlist)
-
-    stmtlist  gehe zu Zustand 112 über
-    decl      gehe zu Zustand 8 über
+    decllist  gehe zu Zustand 112 über
 
 
 Zustand 109
 
-   18 stmt: BEG $@3 decllist stmtlist END .
+   19 stmt: BEG $@4 decllist stmtlist END .
 
-    $default  reduziere mit Regel 18 (stmt)
+    $default  reduziere mit Regel 19 (stmt)
 
 
 Zustand 110
 
-   16 stmt: WHILE $@1 bool $@2 DO . stmt
+   17 stmt: WHILE $@2 bool $@3 DO . stmt
 
     error      schiebe und gehe zu Zustand 11 über
     GO         schiebe und gehe zu Zustand 12 über
@@ -1389,7 +1389,7 @@ Zustand 110
 Zustand 111
 
     7 decllist: decllist . decl
-   20 stmt: IF bool $@4 THEN decllist . stmtlist
+   21 stmt: IF bool $@5 THEN decllist . stmtlist
 
     VAR   schiebe und gehe zu Zustand 5 über
     PROC  schiebe und gehe zu Zustand 6 über
@@ -1402,39 +1402,29 @@ Zustand 111
 
 Zustand 112
 
-    5 stmtlist: stmtlist . stmt
-   10 decl: PROC ID OPEN CLOSE BEG decllist stmtlist . END
+    7 decllist: decllist . decl
+   11 decl: PROC ID $@1 OPEN CLOSE BEG decllist . stmtlist END
 
-    error      schiebe und gehe zu Zustand 11 über
-    GO         schiebe und gehe zu Zustand 12 über
-    NORTH      schiebe und gehe zu Zustand 13 über
-    SOUTH      schiebe und gehe zu Zustand 14 über
-    WEST       schiebe und gehe zu Zustand 15 über
-    EAST       schiebe und gehe zu Zustand 16 über
-    TURNLEFT   schiebe und gehe zu Zustand 17 über
-    TURNRIGHT  schiebe und gehe zu Zustand 18 über
-    TURN       schiebe und gehe zu Zustand 19 über
-    THICKNESS  schiebe und gehe zu Zustand 20 über
-    ID         schiebe und gehe zu Zustand 21 über
-    BEG        schiebe und gehe zu Zustand 22 über
-    END        schiebe und gehe zu Zustand 115 über
-    WHILE      schiebe und gehe zu Zustand 23 über
-    IF         schiebe und gehe zu Zustand 24 über
+    VAR   schiebe und gehe zu Zustand 5 über
+    PROC  schiebe und gehe zu Zustand 6 über
 
-    stmt  gehe zu Zustand 26 über
+    $default  reduziere mit Regel 4 (stmtlist)
+
+    stmtlist  gehe zu Zustand 115 über
+    decl      gehe zu Zustand 8 über
 
 
 Zustand 113
 
-   16 stmt: WHILE $@1 bool $@2 DO stmt .
+   17 stmt: WHILE $@2 bool $@3 DO stmt .
 
-    $default  reduziere mit Regel 16 (stmt)
+    $default  reduziere mit Regel 17 (stmt)
 
 
 Zustand 114
 
     5 stmtlist: stmtlist . stmt
-   20 stmt: IF bool $@4 THEN decllist stmtlist .
+   21 stmt: IF bool $@5 THEN decllist stmtlist .
 
     error      schiebe und gehe zu Zustand 11 über
     GO         schiebe und gehe zu Zustand 12 über
@@ -1451,28 +1441,52 @@ Zustand 114
     WHILE      schiebe und gehe zu Zustand 23 über
     IF         schiebe und gehe zu Zustand 24 über
 
-    $end       reduziere mit Regel 20 (stmt)
-    error      [reduziere mit Regel 20 (stmt)]
-    GO         [reduziere mit Regel 20 (stmt)]
-    NORTH      [reduziere mit Regel 20 (stmt)]
-    SOUTH      [reduziere mit Regel 20 (stmt)]
-    WEST       [reduziere mit Regel 20 (stmt)]
-    EAST       [reduziere mit Regel 20 (stmt)]
-    TURNLEFT   [reduziere mit Regel 20 (stmt)]
-    TURNRIGHT  [reduziere mit Regel 20 (stmt)]
-    TURN       [reduziere mit Regel 20 (stmt)]
-    THICKNESS  [reduziere mit Regel 20 (stmt)]
-    ID         [reduziere mit Regel 20 (stmt)]
-    BEG        [reduziere mit Regel 20 (stmt)]
-    END        reduziere mit Regel 20 (stmt)
-    WHILE      [reduziere mit Regel 20 (stmt)]
-    IF         [reduziere mit Regel 20 (stmt)]
+    $end       reduziere mit Regel 21 (stmt)
+    error      [reduziere mit Regel 21 (stmt)]
+    GO         [reduziere mit Regel 21 (stmt)]
+    NORTH      [reduziere mit Regel 21 (stmt)]
+    SOUTH      [reduziere mit Regel 21 (stmt)]
+    WEST       [reduziere mit Regel 21 (stmt)]
+    EAST       [reduziere mit Regel 21 (stmt)]
+    TURNLEFT   [reduziere mit Regel 21 (stmt)]
+    TURNRIGHT  [reduziere mit Regel 21 (stmt)]
+    TURN       [reduziere mit Regel 21 (stmt)]
+    THICKNESS  [reduziere mit Regel 21 (stmt)]
+    ID         [reduziere mit Regel 21 (stmt)]
+    BEG        [reduziere mit Regel 21 (stmt)]
+    END        reduziere mit Regel 21 (stmt)
+    WHILE      [reduziere mit Regel 21 (stmt)]
+    IF         [reduziere mit Regel 21 (stmt)]
 
     stmt  gehe zu Zustand 26 über
 
 
 Zustand 115
 
-   10 decl: PROC ID OPEN CLOSE BEG decllist stmtlist END .
+    5 stmtlist: stmtlist . stmt
+   11 decl: PROC ID $@1 OPEN CLOSE BEG decllist stmtlist . END
 
-    $default  reduziere mit Regel 10 (decl)
+    error      schiebe und gehe zu Zustand 11 über
+    GO         schiebe und gehe zu Zustand 12 über
+    NORTH      schiebe und gehe zu Zustand 13 über
+    SOUTH      schiebe und gehe zu Zustand 14 über
+    WEST       schiebe und gehe zu Zustand 15 über
+    EAST       schiebe und gehe zu Zustand 16 über
+    TURNLEFT   schiebe und gehe zu Zustand 17 über
+    TURNRIGHT  schiebe und gehe zu Zustand 18 über
+    TURN       schiebe und gehe zu Zustand 19 über
+    THICKNESS  schiebe und gehe zu Zustand 20 über
+    ID         schiebe und gehe zu Zustand 21 über
+    BEG        schiebe und gehe zu Zustand 22 über
+    END        schiebe und gehe zu Zustand 116 über
+    WHILE      schiebe und gehe zu Zustand 23 über
+    IF         schiebe und gehe zu Zustand 24 über
+
+    stmt  gehe zu Zustand 26 über
+
+
+Zustand 116
+
+   11 decl: PROC ID $@1 OPEN CLOSE BEG decllist stmtlist END .
+
+    $default  reduziere mit Regel 11 (decl)

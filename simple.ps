@@ -3,6 +3,7 @@
 /angle 0 def
 newpath
 0 0 moveto
+/tltsquare {
 50 dup 0 rlineto
 90 dup rotate /angle exch angle add def
 50 dup 0 rlineto
@@ -11,4 +12,5 @@ newpath
 90 dup rotate /angle exch angle add def
 50 dup 0 rlineto
 90 dup rotate /angle exch angle add def
-stroke
+} def
+tltsquare stroke
