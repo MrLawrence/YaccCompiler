@@ -83,7 +83,8 @@ extern int yydebug;
     IF = 293,
     THEN = 294,
     ELSE = 295,
-    PROC = 296
+    PROC = 296,
+    KOMMA = 297
   };
 #endif
 
@@ -95,7 +96,7 @@ union YYSTYPE
 #line 21 "turtle.y" /* yacc.c:1909  */
  int i; float f; node *n; 
 
-#line 99 "turtle.tab.h" /* yacc.c:1909  */
+#line 100 "turtle.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

@@ -3,14 +3,18 @@
 /angle 0 def
 newpath
 0 0 moveto
-/tltsquare {
-50 dup 0 rlineto
-90 dup rotate /angle exch angle add def
-50 dup 0 rlineto
-90 dup rotate /angle exch angle add def
-50 dup 0 rlineto
-90 dup rotate /angle exch angle add def
-50 dup 0 rlineto
-90 dup rotate /angle exch angle add def
-} def
-tltsquare stroke
+/tltsquare { 4 dict begin
+/tltangle exch def
+/tltsize exch def
+tltsize dup 0 rlineto
+tltangle dup rotate /angle exch angle add def
+tltsize dup 0 rlineto
+tltangle dup rotate /angle exch angle add def
+tltsize dup 0 rlineto
+tltangle dup rotate /angle exch angle add def
+tltsize dup 0 rlineto
+tltangle dup rotate /angle exch angle add def
+end } def
+/tltx 0 def
+50  /tltx exch store
+tltx tltx 40 add tltsquare stroke

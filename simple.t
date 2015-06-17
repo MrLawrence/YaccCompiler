@@ -1,6 +1,10 @@
-PROCEDURE square()
+PROCEDURE square(size, angle)
 BEGIN
-GO 50; TURN 90; GO 50; TURN 90; GO 50; TURN 90; GO 50; TURN 90; 
+GO size; TURN angle; 
+GO size; TURN angle; 
+GO size; TURN angle; 
+GO size; TURN angle; 
 END
-
-square();
+VAR x;
+x = 50;
+square(x, x+40);

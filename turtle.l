@@ -7,6 +7,7 @@
 
 GO	return GO;
 ;	return SEMICOLON;
+, return KOMMA;
 NORTH	return NORTH;
 SOUTH	return SOUTH;
 WEST	return WEST;

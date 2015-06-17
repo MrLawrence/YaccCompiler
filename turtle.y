@@ -16,7 +16,7 @@ extern int yylineno;
 %token PLUS MINUS TIMES OPEN CLOSE EULER EXP SIN
 %token ASSIGN VAR
 %token BEG END DO WHILE LESS GREATER EQUAL TRUE FALSE  AND NOT OR IF THEN ELSE
-%token PROC
+%token PROC KOMMA
 
 %union { int i; float f; node *n; }
 
@@ -38,14 +38,25 @@ decl: VAR ID SEMICOLON { $2 -> declared = 1;
 						printf("/tlt%s 0 def\n", $2 -> symbol); };
 decl: VAR ID ASSIGN expr SEMICOLON { printf(" /tlt%s exch def\n", $2 -> symbol); $2 -> declared = 1; };
 
-decl: PROC ID { $2 -> declared = 1; printf("/tlt%s {\n", $2 -> symbol); } OPEN CLOSE
+decl: PROC ID { $2 -> declared = 1; scope_open(); printf("/tlt%s { 4 dict begin\n", $2 -> symbol); }
+		OPEN paramlist CLOSE
 		BEG
 		decllist
 		stmtlist
-		END  { printf("} def\n"); };
+		END  { scope_close(); printf("end } def\n"); };
 
-stmt: ID OPEN CLOSE SEMICOLON { if (!$1 -> declared) {yyerror("Undeclared Function");}
+paramlist: ;
+paramlist: params;
+params: ID {$1 -> declared = 1; printf("/tlt%s exch def\n", $1 -> symbol); };
+params: ID KOMMA params {$1 -> declared = 1; printf("/tlt%s exch def\n", $1 -> symbol); };
+
+stmt: ID OPEN arglist CLOSE SEMICOLON { if (!$1 -> declared) {yyerror("Undeclared Function");}
 				printf("tlt%s ", $1 -> symbol); };
+
+arglist: ;
+arglist: args;
+args: expr;
+args: args KOMMA expr;
 
 stmt: error SEMICOLON { yyerror("broken statement"); };
 stmt: BEG stmtlist error END { yyerror("broken statement"); };
