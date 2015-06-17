@@ -50,7 +50,7 @@ paramlist: params;
 params: ID {$1 -> declared = 1; printf("/tlt%s exch def\n", $1 -> symbol); };
 params: ID KOMMA params {$1 -> declared = 1; printf("/tlt%s exch def\n", $1 -> symbol); };
 
-stmt: ID OPEN arglist CLOSE SEMICOLON { if (!$1 -> declared) {yyerror("Undeclared Function");}
+stmt: ID OPEN arglist CLOSE SEMICOLON { if (!$1 -> declared) {yyerror("Undeclared Procedure");}
 				printf("tlt%s ", $1 -> symbol); };
 
 arglist: ;
@@ -61,7 +61,10 @@ args: args KOMMA expr;
 stmt: error SEMICOLON { yyerror("broken statement"); };
 stmt: BEG stmtlist error END { yyerror("broken statement"); };
 
-stmt: WHILE { printf("{ "); } bool { printf("not { exit } if\n"); } DO stmt { printf("} loop\n"); };
+stmt: WHILE { printf("{ "); } 
+		bool { printf("not { exit } if\n"); } DO 
+		stmt { printf("} loop\n"); };
+		
 stmt: BEG { scope_open(); printf("4 dict begin\n"); }
 		decllist
 		stmtlist 
