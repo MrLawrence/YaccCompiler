@@ -82,7 +82,8 @@ extern int yydebug;
     OR = 292,
     IF = 293,
     THEN = 294,
-    ELSE = 295
+    ELSE = 295,
+    PROC = 296
   };
 #endif
 
@@ -91,10 +92,10 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 20 "turtle.y" /* yacc.c:1909  */
+#line 21 "turtle.y" /* yacc.c:1909  */
  int i; float f; node *n; 
 
-#line 98 "turtle.tab.h" /* yacc.c:1909  */
+#line 99 "turtle.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

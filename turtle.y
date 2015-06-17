@@ -16,6 +16,7 @@ extern int yylineno;
 %token PLUS MINUS TIMES OPEN CLOSE EULER EXP SIN
 %token ASSIGN VAR
 %token BEG END DO WHILE LESS GREATER EQUAL TRUE FALSE  AND NOT OR IF THEN ELSE
+%token PROC
 
 %union { int i; float f; node *n; }
 
@@ -37,6 +38,14 @@ decl: VAR ID SEMICOLON { $2 -> declared = 1;
 						printf("/tlt%s 0 def\n", $2 -> symbol); };
 decl: VAR ID ASSIGN expr SEMICOLON { printf(" /tlt%s exch def\n", $2 -> symbol); $2 -> declared = 1; };
 
+decl: PROC ID OPEN CLOSE
+		BEG
+		decllist
+		stmtlist
+		END;
+
+stmt: ID OPEN CLOSE SEMICOLON;
+
 stmt: error SEMICOLON { yyerror("broken statement"); };
 stmt: BEG stmtlist error END { yyerror("broken statement"); };
 
@@ -46,7 +55,7 @@ stmt: BEG { scope_open(); printf("4 dict begin\n"); }
 		stmtlist 
 		END { scope_close(); printf("end\n"); };
 
-stmt: IF bool { printf("not { exit } if\n"); } THEN decl stmt;
+stmt: IF bool { printf("not { exit } if\n"); } THEN decllist stmtlist;
 stmt: GO SEMICOLON{ printf("50 0 rlineto\n"); };
 stmt: GO expr SEMICOLON{ printf("dup 0 rlineto\n"); }
 stmt: NORTH SEMICOLON{ printf("90 angle sub rotate /angle 90 def\n"); };

@@ -40,6 +40,7 @@ e   return EULER;
 sin return SIN;
 =	return ASSIGN;
 VAR return VAR;
+PROCEDURE return PROC;
 
 [a-zA-Z]+	{	yylval.n = lookup(yytext); 
 				if (yylval.n == NULL) {yylval.n = insert(yytext);}

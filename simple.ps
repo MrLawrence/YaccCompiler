@@ -3,10 +3,12 @@
 /angle 0 def
 newpath
 0 0 moveto
-/tltx 0 def
-0  /tltx exch store
-{ tltx 190 lt not { exit } if
-4 dict begin
-/tltx 0 def
-0  /tltx exch store
-tltx 10 gt not { exit } if
+50 dup 0 rlineto
+90 dup rotate /angle exch angle add def
+50 dup 0 rlineto
+90 dup rotate /angle exch angle add def
+50 dup 0 rlineto
+90 dup rotate /angle exch angle add def
+50 dup 0 rlineto
+90 dup rotate /angle exch angle add def
+stroke

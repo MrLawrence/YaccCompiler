@@ -1,13 +1,6 @@
-VAR x;
-x = 0;
-
-WHILE x < 190 DO 
+PROCEDURE square()
 BEGIN
-VAR x;
-x = 0;
-IF x > 10 THEN
-x = x + 3; 
-GO x + 2;	
+GO 50; TURN 90; GO 50; TURN 90; GO 50; TURN 90; GO 50; TURN 90; 
 END
 
-x = x * 2;
+square();
