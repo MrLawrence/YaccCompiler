@@ -22,21 +22,31 @@ extern int yylineno;
 %error-verbose
 %%
 
-program: head stmtlist tail;
+program: head decllist stmtlist tail;
 
 head:  { printf("%%!PS\n" "100 100 translate\n" "/angle 0 def\n" "newpath\n" "0 0 moveto\n"); };
 tail: { printf("stroke\n"); };
 
 stmtlist: ;
 stmtlist: stmtlist stmt;
+decllist: ;
+decllist: decllist decl;
+
+
+decl: VAR ID SEMICOLON { $2 -> declared = 1; 
+						printf("/tlt%s 0 def\n", $2 -> symbol); };
+decl: VAR ID ASSIGN expr SEMICOLON { printf(" /tlt%s exch def\n", $2 -> symbol); $2 -> declared = 1; };
 
 stmt: error SEMICOLON { yyerror("broken statement"); };
 stmt: BEG stmtlist error END { yyerror("broken statement"); };
 
 stmt: WHILE { printf("{ "); } bool { printf("not { exit } if\n"); } DO stmt { printf("} loop\n"); };
-stmt: BEG stmtlist END;
+stmt: BEG { scope_open(); printf("4 dict begin\n"); }
+		decllist
+		stmtlist 
+		END { scope_close(); printf("end\n"); };
 
-stmt: IF bool { printf("not { exit } if\n"); } THEN stmt;
+stmt: IF bool { printf("not { exit } if\n"); } THEN decl stmt;
 stmt: GO SEMICOLON{ printf("50 0 rlineto\n"); };
 stmt: GO expr SEMICOLON{ printf("dup 0 rlineto\n"); }
 stmt: NORTH SEMICOLON{ printf("90 angle sub rotate /angle 90 def\n"); };
@@ -47,14 +57,8 @@ stmt: TURNLEFT SEMICOLON{ printf("90 rotate\n"); };
 stmt: TURNRIGHT SEMICOLON{ printf("270 rotate\n"); };
 stmt: TURN expr SEMICOLON { printf("dup rotate /angle exch angle add def\n"); };
 stmt: THICKNESS NUMBER SEMICOLON { printf("%d setlinewidth\n", $2); };
-stmt: VAR ID ASSIGN expr SEMICOLON { printf(" /tlt%s exch def\n", $2 -> symbol); $2 -> declared = 1; };
-stmt: VAR ID SEMICOLON { $2 -> declared = 1; };
-stmt: ID ASSIGN expr SEMICOLON { if (!$1 -> declared) {
-									yyerror("Undeclared Variable");
-									} else {
-								printf(" /tlt%s exch def\n", $1 -> symbol);
-								}
-							};
+stmt: ID ASSIGN expr SEMICOLON { if (!$1 -> declared) yyerror("Undeclared Variable");	
+								printf(" /tlt%s exch store\n", $1 -> symbol); };
 
 
 bool: bool OR bool1 { printf("or "); };
@@ -91,7 +95,10 @@ atomic: FLOAT { printf("%f ", $1); };
 atomic: OPEN expr CLOSE;
 atomic: OPEN error CLOSE { yyerror("broken expression"); };
 atomic: EULER { printf("2.71828 "); };
-atomic: ID { printf("tlt%s ", $1 -> symbol); };
+atomic: ID { if (!$1 -> declared) {
+				yyerror("Undeclared Variable");
+				}
+				printf("tlt%s ", $1 -> symbol); };
 %%
 
 int yyerror(char *msg) {

@@ -1,8 +1,13 @@
-VAR x = 300;
+VAR x;
+x = 0;
 
-WHILE x > 190 AND NOT FALSE DO 
+WHILE x < 190 DO 
 BEGIN
-	x = x - 3;
-	TURN x;
-	IF TRUE THEN GO x;
+VAR x;
+x = 0;
+IF x > 10 THEN
+x = x + 3; 
+GO x + 2;	
 END
+
+x = x * 2;
