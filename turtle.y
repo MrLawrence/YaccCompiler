@@ -73,13 +73,16 @@ stmt: BEG { scope_open(); printf("4 dict begin\n"); }
 stmt: IF bool { printf("not { exit } if\n"); } THEN decllist stmtlist;
 stmt: GO SEMICOLON{ printf("50 0 rlineto\n"); };
 stmt: GO expr SEMICOLON{ printf("dup 0 rlineto\n"); }
+
 stmt: NORTH SEMICOLON{ printf("90 angle sub rotate /angle 90 def\n"); };
 stmt: SOUTH SEMICOLON{ printf("270 angle sub rotate /angle 270 def\n"); };
 stmt: WEST SEMICOLON{ printf("180 angle sub rotate /angle 180 def\n"); };
 stmt: EAST SEMICOLON{ printf("0 angle sub rotate /angle 0 def\n"); };
+
 stmt: TURNLEFT SEMICOLON{ printf("90 rotate\n"); };
 stmt: TURNRIGHT SEMICOLON{ printf("270 rotate\n"); };
 stmt: TURN expr SEMICOLON { printf("dup rotate /angle exch angle add def\n"); };
+
 stmt: THICKNESS NUMBER SEMICOLON { printf("%d setlinewidth\n", $2); };
 stmt: ID ASSIGN expr SEMICOLON { if (!$1 -> declared) yyerror("Undeclared Variable");	
 								printf(" /tlt%s exch store\n", $1 -> symbol); };
@@ -108,8 +111,11 @@ expr: expr MINUS prod { printf("sub "); };
 
 //expr: SIN OPEN expr CLOSE { printf("sin(%d) ", $1); };
 
-prod: exp;
+prod: unary;
 prod: prod TIMES exp { printf("mul "); };
+
+unary: atomic;
+unary: MINUS atomic {printf("neg ");};
 
 exp: atomic;
 exp: atomic EXP exp { printf("exp "); };

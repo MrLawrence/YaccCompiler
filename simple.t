@@ -1,9 +1,4 @@
-VAR x;
-x = 0;
-
-IF x == 0 DO
-BEGIN
- VAR x;
- x = 50;
- GO x;
-END
+NORTH;
+GO 50 - -50;
+EAST;
+GO 50;
