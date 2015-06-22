@@ -473,11 +473,11 @@ static const yytype_uint8 yyrline[] =
 {
        0,    26,    26,    28,    29,    31,    32,    33,    34,    37,
       39,    41,    41,    48,    49,    50,    51,    53,    56,    57,
-      58,    59,    61,    62,    64,    64,    64,    65,    65,    70,
-      70,    71,    72,    73,    74,    75,    76,    77,    78,    79,
-      80,    81,    85,    86,    88,    89,    91,    92,    94,    95,
-      96,    97,    98,    99,   102,   103,   104,   108,   109,   111,
-     112,   114,   115,   116,   117,   118,   119
+      58,    59,    61,    62,    64,    65,    64,    68,    68,    73,
+      73,    74,    75,    76,    77,    78,    79,    80,    81,    82,
+      83,    84,    88,    89,    91,    92,    94,    95,    97,    98,
+      99,   100,   101,   102,   105,   106,   107,   111,   112,   114,
+     115,   117,   118,   119,   120,   121,   122
 };
 #endif
 
@@ -1400,7 +1400,7 @@ yyreduce:
 
   case 17:
 #line 53 "turtle.y" /* yacc.c:1646  */
-    { if (!(yyvsp[-4].n) -> declared) {yyerror("Undeclared Function");}
+    { if (!(yyvsp[-4].n) -> declared) {yyerror("Undeclared Procedure");}
 				printf("tlt%s ", (yyvsp[-4].n) -> symbol); }
 #line 1406 "turtle.tab.c" /* yacc.c:1646  */
     break;
@@ -1424,200 +1424,200 @@ yyreduce:
     break;
 
   case 25:
-#line 64 "turtle.y" /* yacc.c:1646  */
+#line 65 "turtle.y" /* yacc.c:1646  */
     { printf("not { exit } if\n"); }
 #line 1430 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 64 "turtle.y" /* yacc.c:1646  */
+#line 66 "turtle.y" /* yacc.c:1646  */
     { printf("} loop\n"); }
 #line 1436 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 65 "turtle.y" /* yacc.c:1646  */
+#line 68 "turtle.y" /* yacc.c:1646  */
     { scope_open(); printf("4 dict begin\n"); }
 #line 1442 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 68 "turtle.y" /* yacc.c:1646  */
+#line 71 "turtle.y" /* yacc.c:1646  */
     { scope_close(); printf("end\n"); }
 #line 1448 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 70 "turtle.y" /* yacc.c:1646  */
+#line 73 "turtle.y" /* yacc.c:1646  */
     { printf("not { exit } if\n"); }
 #line 1454 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 71 "turtle.y" /* yacc.c:1646  */
+#line 74 "turtle.y" /* yacc.c:1646  */
     { printf("50 0 rlineto\n"); }
 #line 1460 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 72 "turtle.y" /* yacc.c:1646  */
+#line 75 "turtle.y" /* yacc.c:1646  */
     { printf("dup 0 rlineto\n"); }
 #line 1466 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 73 "turtle.y" /* yacc.c:1646  */
+#line 76 "turtle.y" /* yacc.c:1646  */
     { printf("90 angle sub rotate /angle 90 def\n"); }
 #line 1472 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 74 "turtle.y" /* yacc.c:1646  */
+#line 77 "turtle.y" /* yacc.c:1646  */
     { printf("270 angle sub rotate /angle 270 def\n"); }
 #line 1478 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 75 "turtle.y" /* yacc.c:1646  */
+#line 78 "turtle.y" /* yacc.c:1646  */
     { printf("180 angle sub rotate /angle 180 def\n"); }
 #line 1484 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 76 "turtle.y" /* yacc.c:1646  */
+#line 79 "turtle.y" /* yacc.c:1646  */
     { printf("0 angle sub rotate /angle 0 def\n"); }
 #line 1490 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 77 "turtle.y" /* yacc.c:1646  */
+#line 80 "turtle.y" /* yacc.c:1646  */
     { printf("90 rotate\n"); }
 #line 1496 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 78 "turtle.y" /* yacc.c:1646  */
+#line 81 "turtle.y" /* yacc.c:1646  */
     { printf("270 rotate\n"); }
 #line 1502 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 79 "turtle.y" /* yacc.c:1646  */
+#line 82 "turtle.y" /* yacc.c:1646  */
     { printf("dup rotate /angle exch angle add def\n"); }
 #line 1508 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 80 "turtle.y" /* yacc.c:1646  */
+#line 83 "turtle.y" /* yacc.c:1646  */
     { printf("%d setlinewidth\n", (yyvsp[-1].i)); }
 #line 1514 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 81 "turtle.y" /* yacc.c:1646  */
+#line 84 "turtle.y" /* yacc.c:1646  */
     { if (!(yyvsp[-3].n) -> declared) yyerror("Undeclared Variable");	
 								printf(" /tlt%s exch store\n", (yyvsp[-3].n) -> symbol); }
 #line 1521 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 85 "turtle.y" /* yacc.c:1646  */
+#line 88 "turtle.y" /* yacc.c:1646  */
     { printf("or "); }
 #line 1527 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 88 "turtle.y" /* yacc.c:1646  */
+#line 91 "turtle.y" /* yacc.c:1646  */
     { printf("and "); }
 #line 1533 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 91 "turtle.y" /* yacc.c:1646  */
+#line 94 "turtle.y" /* yacc.c:1646  */
     { printf("not "); }
 #line 1539 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 94 "turtle.y" /* yacc.c:1646  */
+#line 97 "turtle.y" /* yacc.c:1646  */
     { printf("lt "); }
 #line 1545 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 95 "turtle.y" /* yacc.c:1646  */
+#line 98 "turtle.y" /* yacc.c:1646  */
     { printf("gt "); }
 #line 1551 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 96 "turtle.y" /* yacc.c:1646  */
+#line 99 "turtle.y" /* yacc.c:1646  */
     { printf("eq "); }
 #line 1557 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 97 "turtle.y" /* yacc.c:1646  */
+#line 100 "turtle.y" /* yacc.c:1646  */
     { printf("true "); }
 #line 1563 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 98 "turtle.y" /* yacc.c:1646  */
+#line 101 "turtle.y" /* yacc.c:1646  */
     { printf("false "); }
 #line 1569 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 103 "turtle.y" /* yacc.c:1646  */
+#line 106 "turtle.y" /* yacc.c:1646  */
     { printf("add "); }
 #line 1575 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 104 "turtle.y" /* yacc.c:1646  */
+#line 107 "turtle.y" /* yacc.c:1646  */
     { printf("sub "); }
 #line 1581 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 109 "turtle.y" /* yacc.c:1646  */
+#line 112 "turtle.y" /* yacc.c:1646  */
     { printf("mul "); }
 #line 1587 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 112 "turtle.y" /* yacc.c:1646  */
+#line 115 "turtle.y" /* yacc.c:1646  */
     { printf("exp "); }
 #line 1593 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 114 "turtle.y" /* yacc.c:1646  */
+#line 117 "turtle.y" /* yacc.c:1646  */
     { printf("%d ", (yyvsp[0].i)); }
 #line 1599 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 115 "turtle.y" /* yacc.c:1646  */
+#line 118 "turtle.y" /* yacc.c:1646  */
     { printf("%f ", (yyvsp[0].f)); }
 #line 1605 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 117 "turtle.y" /* yacc.c:1646  */
+#line 120 "turtle.y" /* yacc.c:1646  */
     { yyerror("broken expression"); }
 #line 1611 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 118 "turtle.y" /* yacc.c:1646  */
+#line 121 "turtle.y" /* yacc.c:1646  */
     { printf("2.71828 "); }
 #line 1617 "turtle.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 119 "turtle.y" /* yacc.c:1646  */
+#line 122 "turtle.y" /* yacc.c:1646  */
     { if (!(yyvsp[0].n) -> declared) {
 				yyerror("Undeclared Variable");
 				}
@@ -1854,7 +1854,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 123 "turtle.y" /* yacc.c:1906  */
+#line 126 "turtle.y" /* yacc.c:1906  */
 
 
 int yyerror(char *msg) {
