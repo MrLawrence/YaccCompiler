@@ -59,7 +59,6 @@ args: expr;
 args: args KOMMA expr;
 
 stmt: error SEMICOLON { yyerror("broken statement"); };
-stmt: BEG stmtlist error END { yyerror("broken statement"); };
 
 stmt: WHILE { printf("{ "); } 
 		bool { printf("not { exit } if\n"); } DO 
@@ -68,9 +67,14 @@ stmt: WHILE { printf("{ "); }
 stmt: BEG { scope_open(); printf("4 dict begin\n"); }
 		decllist
 		stmtlist 
-		END { scope_close(); printf("end\n"); };
+	  END { scope_close(); printf("end\n"); };
 
-stmt: IF bool { printf("not { exit } if\n"); } THEN decllist stmtlist;
+ifpart: IF bool { printf("{ \n"); } THEN stmt;
+stmt: ifpart { printf("} if\n"); };
+stmt: ifpart ELSE { printf("} {\n");} stmt {printf(" ifelse\n"); };
+
+
+
 stmt: GO SEMICOLON{ printf("50 0 rlineto\n"); };
 stmt: GO expr SEMICOLON{ printf("dup 0 rlineto\n"); }
 
@@ -108,8 +112,7 @@ bool3: OPEN bool CLOSE
 expr: prod;
 expr: expr PLUS prod { printf("add "); };
 expr: expr MINUS prod { printf("sub "); };
-
-//expr: SIN OPEN expr CLOSE { printf("sin(%d) ", $1); };
+//expr: SIN OPEN expr CLOSE { printf("sin(%d) ", $3); };
 
 prod: unary;
 prod: prod TIMES exp { printf("mul "); };

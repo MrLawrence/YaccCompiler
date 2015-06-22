@@ -1,4 +1,9 @@
+IF 5 == 6 THEN
+BEGIN
 NORTH;
 GO 50 - -50;
 EAST;
 GO 50;
+END
+
+ELSE GO 200;

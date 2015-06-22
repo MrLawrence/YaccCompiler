@@ -399,8 +399,8 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[118] =
     {   0,
-        0,    0,   44,   42,   41,   41,   30,   31,   29,   27,
-        3,   28,   39,    2,   19,   35,   20,   38,   38,   38,
+        0,    0,   44,   42,   41,   41,   27,   28,   31,   29,
+        3,   30,   39,    2,   19,   35,   20,   38,   38,   38,
        38,   38,   38,   38,   38,   38,   38,   38,   38,   38,
        38,   38,   33,   32,   38,   41,    0,   39,   21,   38,
        38,   38,   14,   38,   38,   38,   38,    1,   24,   38,
@@ -861,177 +861,177 @@ return KOMMA;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "turtle.l"
+#line 12 "turtle.l"
 return NORTH;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 12 "turtle.l"
+#line 13 "turtle.l"
 return SOUTH;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "turtle.l"
+#line 14 "turtle.l"
 return WEST;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 14 "turtle.l"
+#line 15 "turtle.l"
 return EAST;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 15 "turtle.l"
+#line 17 "turtle.l"
 return TURNLEFT;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 16 "turtle.l"
+#line 18 "turtle.l"
 return TURNRIGHT;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 17 "turtle.l"
+#line 19 "turtle.l"
 return TURN;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 18 "turtle.l"
+#line 20 "turtle.l"
 return THICKNESS;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 19 "turtle.l"
+#line 22 "turtle.l"
 return BEG;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 20 "turtle.l"
+#line 23 "turtle.l"
 return END;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 21 "turtle.l"
+#line 25 "turtle.l"
 return DO;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 22 "turtle.l"
+#line 26 "turtle.l"
 return WHILE;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 23 "turtle.l"
+#line 28 "turtle.l"
 return AND;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 24 "turtle.l"
+#line 29 "turtle.l"
 return OR;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 25 "turtle.l"
+#line 30 "turtle.l"
 return NOT;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 26 "turtle.l"
+#line 31 "turtle.l"
 return LESS;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 27 "turtle.l"
+#line 32 "turtle.l"
 return GREATER;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 28 "turtle.l"
+#line 33 "turtle.l"
 return EQUAL;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 29 "turtle.l"
+#line 34 "turtle.l"
 return TRUE;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 30 "turtle.l"
+#line 35 "turtle.l"
 return FALSE;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 31 "turtle.l"
+#line 37 "turtle.l"
 return IF;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 32 "turtle.l"
+#line 38 "turtle.l"
 return THEN;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 33 "turtle.l"
+#line 39 "turtle.l"
 return ELSE;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 34 "turtle.l"
-return PLUS;
+#line 41 "turtle.l"
+return OPEN;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 35 "turtle.l"
-return MINUS;
+#line 42 "turtle.l"
+return CLOSE;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 36 "turtle.l"
-return TIMES;
+#line 44 "turtle.l"
+return PLUS;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 37 "turtle.l"
-return OPEN;
+#line 45 "turtle.l"
+return MINUS;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 38 "turtle.l"
-return CLOSE;
+#line 46 "turtle.l"
+return TIMES;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 39 "turtle.l"
+#line 47 "turtle.l"
 return EULER;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 40 "turtle.l"
+#line 48 "turtle.l"
 return EXP;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 41 "turtle.l"
+#line 49 "turtle.l"
 return SIN;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 42 "turtle.l"
+#line 51 "turtle.l"
 return ASSIGN;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 43 "turtle.l"
+#line 52 "turtle.l"
 return VAR;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 44 "turtle.l"
+#line 53 "turtle.l"
 return PROC;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 46 "turtle.l"
+#line 55 "turtle.l"
 {	yylval.n = lookup(yytext); 
 				if (yylval.n == NULL) {yylval.n = insert(yytext);}
 				return ID;
@@ -1039,28 +1039,28 @@ YY_RULE_SETUP
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 50 "turtle.l"
+#line 59 "turtle.l"
 yylval.i=atoi(yytext); return NUMBER;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 51 "turtle.l"
+#line 60 "turtle.l"
 yylval.f=atof(yytext); return FLOAT;
 	YY_BREAK
 case 41:
 /* rule 41 can match eol */
 YY_RULE_SETUP
-#line 52 "turtle.l"
+#line 61 "turtle.l"
 ;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 53 "turtle.l"
+#line 62 "turtle.l"
 yyerror("Unexpected Character");
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 55 "turtle.l"
+#line 64 "turtle.l"
 ECHO;
 	YY_BREAK
 #line 1067 "lex.yy.c"
@@ -2070,7 +2070,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 54 "turtle.l"
+#line 63 "turtle.l"
 
 
 
