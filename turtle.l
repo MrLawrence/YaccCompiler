@@ -19,24 +19,24 @@ TURNRIGHT 	return TURNRIGHT;
 TURN 		return TURN;
 THICKNESS 	return THICKNESS;
 
-BEGIN		return BEG;
-END			return END;
+\{			return BEG;
+\}			return END;
 
-DO 			return DO;
-WHILE 		return WHILE;
+do 			return DO;
+while 		return WHILE;
 
-AND 		return AND;
-OR 			return OR;
-NOT 		return NOT;
+&&	 		return AND;
+\|\| 		return OR;
+not 		return NOT;
 \< 			return LESS;
 \> 			return GREATER;
 == 			return EQUAL;
-TRUE 		return TRUE;
-FALSE 		return FALSE;
+true 		return TRUE;
+false 		return FALSE;
 
-IF 			return IF;
-THEN 		return THEN;
-ELSE 		return ELSE;
+if 			return IF;
+then 		return THEN;
+else 		return ELSE;
 
 \(  		return OPEN;
 \)			return CLOSE;
@@ -49,8 +49,8 @@ e   		return EULER;
 sin 		return SIN;
 
 =			return ASSIGN;
-VAR 		return VAR;
-PROCEDURE 	return PROC;
+int 		return VAR;
+proc 	return PROC;
 
 [a-zA-Z]+	{	yylval.n = lookup(yytext); 
 				if (yylval.n == NULL) {yylval.n = insert(yytext);}

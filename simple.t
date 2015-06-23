@@ -1,9 +1,10 @@
-VAR x;
-x = 5;
-IF x == 5 AND TRUE THEN
-BEGIN
-NORTH;
-GO 50 + 50;
-EAST;
-GO 50;
-END
+int x;
+x = 0;
+
+while x < 90 do {
+	x = x + 4;
+	if (x < 45 && true) then {
+		TURN 2*x;
+		GO 50;
+	}
+}
