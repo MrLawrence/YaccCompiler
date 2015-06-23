@@ -1,9 +1,9 @@
-IF 5 == 6 THEN
+VAR x;
+x = 5;
+IF x == 5 AND TRUE THEN
 BEGIN
 NORTH;
-GO 50 - -50;
+GO 50 + 50;
 EAST;
 GO 50;
 END
-
-ELSE GO 200;
