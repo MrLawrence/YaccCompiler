@@ -13,7 +13,7 @@ extern int yylineno;
 %token <i> NUMBER
 %token <f> FLOAT
 %token <n> ID
-%token PLUS MINUS TIMES OPEN CLOSE EULER EXP SIN
+%token PLUS MINUS TIMES OPEN CLOSE EULER EXP
 %token ASSIGN VAR
 %token BEG END DO WHILE LESS GREATER EQUAL TRUE FALSE  AND NOT OR IF THEN ELSE
 %token PROC KOMMA
@@ -38,7 +38,9 @@ decl: VAR ID SEMICOLON { $2 -> declared = 1;
 						printf("/tlt%s 0 def\n", $2 -> symbol); };
 decl: VAR ID ASSIGN expr SEMICOLON { printf(" /tlt%s exch def\n", $2 -> symbol); $2 -> declared = 1; };
 
-decl: PROC ID { $2 -> declared = 1; scope_open(); printf("/tlt%s { 4 dict begin\n", $2 -> symbol); }
+decl: PROC ID { $2 -> declared = 1; 
+				scope_open(); 
+				printf("/tlt%s { 4 dict begin\n", $2 -> symbol); }
 		OPEN paramlist CLOSE
 		BEG
 		decllist
@@ -61,7 +63,7 @@ args: args KOMMA expr;
 stmt: error SEMICOLON { yyerror("broken statement"); };
 
 stmt: WHILE { printf("{ "); } 
-		bool { printf("not { exit } if\n"); } DO 
+		bool { printf("not { exit } if\n"); } 
 		stmt { printf("} loop\n"); };
 		
 stmt: BEG { scope_open(); printf("4 dict begin\n"); }
@@ -69,7 +71,7 @@ stmt: BEG { scope_open(); printf("4 dict begin\n"); }
 		stmtlist 
 	  END { scope_close(); printf("end\n"); };
 
-ifpart: IF bool { printf("{ \n"); } THEN stmt;
+ifpart: IF bool { printf("{ \n"); } stmt;
 stmt: ifpart { printf("} if\n"); };
 stmt: ifpart ELSE { printf("} {\n");} stmt {printf(" ifelse\n"); };
 
@@ -112,13 +114,13 @@ bool3: OPEN bool CLOSE
 expr: prod;
 expr: expr PLUS prod { printf("add "); };
 expr: expr MINUS prod { printf("sub "); };
-//expr: SIN OPEN expr CLOSE { printf("sin(%d) ", $3); };
 
 prod: unary;
 prod: prod TIMES exp { printf("mul "); };
 
 unary: atomic;
 unary: MINUS atomic {printf("neg ");};
+unary: PLUS atomic;
 
 exp: atomic;
 exp: atomic EXP exp { printf("exp "); };
@@ -140,7 +142,7 @@ int yyerror(char *msg) {
 }
 
 int main(void) {
-	yydebug=0;
+	yydebug=1;
 	yyparse();
 	return 0;
 }

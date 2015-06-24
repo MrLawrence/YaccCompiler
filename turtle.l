@@ -46,11 +46,10 @@ else 		return ELSE;
 \*			return TIMES;
 e   		return EULER;
 \^  		return EXP;
-sin 		return SIN;
 
 =			return ASSIGN;
-int 		return VAR;
-proc 	return PROC;
+var 		return VAR;
+def 		return PROC;
 
 [a-zA-Z]+	{	yylval.n = lookup(yytext); 
 				if (yylval.n == NULL) {yylval.n = insert(yytext);}

@@ -1,6 +1,7 @@
 Terminale, die in Grammatik unbenutzt sind
 
-   SIN
+   DO
+   THEN
 
 
 Zustand 27 Konflikte: 1 Schiebe/Reduziere
@@ -49,7 +50,7 @@ Grammatik
 
    23 $@3: %empty
 
-   24 stmt: WHILE $@2 bool $@3 DO stmt
+   24 stmt: WHILE $@2 bool $@3 stmt
 
    25 $@4: %empty
 
@@ -57,7 +58,7 @@ Grammatik
 
    27 $@5: %empty
 
-   28 ifpart: IF bool $@5 THEN stmt
+   28 ifpart: IF bool $@5 stmt
 
    29 stmt: ifpart
 
@@ -101,22 +102,23 @@ Grammatik
 
    60 unary: atomic
    61      | MINUS atomic
+   62      | PLUS atomic
 
-   62 exp: atomic
-   63    | atomic EXP exp
+   63 exp: atomic
+   64    | atomic EXP exp
 
-   64 atomic: NUMBER
-   65       | FLOAT
-   66       | OPEN expr CLOSE
-   67       | OPEN error CLOSE
-   68       | EULER
-   69       | ID
+   65 atomic: NUMBER
+   66       | FLOAT
+   67       | OPEN expr CLOSE
+   68       | OPEN error CLOSE
+   69       | EULER
+   70       | ID
 
 
 Terminale und die Regeln, in denen sie verwendet werden
 
 $end (0) 0
-error (256) 21 67
+error (256) 21 68
 GO (258) 32 33
 SEMICOLON (259) 8 9 16 21 32 33 34 35 36 37 38 39 40 41 42
 NORTH (260) 34
@@ -127,100 +129,99 @@ TURNLEFT (264) 38
 TURNRIGHT (265) 39
 TURN (266) 40
 THICKNESS (267) 41
-NUMBER (268) 41 64
-FLOAT (269) 65
-ID (270) 8 9 11 14 15 16 42 69
-PLUS (271) 56
+NUMBER (268) 41 65
+FLOAT (269) 66
+ID (270) 8 9 11 14 15 16 42 70
+PLUS (271) 56 62
 MINUS (272) 57 61
 TIMES (273) 59
-OPEN (274) 11 16 54 66 67
-CLOSE (275) 11 16 54 66 67
-EULER (276) 68
-EXP (277) 63
-SIN (278)
-ASSIGN (279) 9 42
-VAR (280) 8 9
-BEG (281) 11 26
-END (282) 11 26
-DO (283) 24
-WHILE (284) 24
-LESS (285) 49
-GREATER (286) 50
-EQUAL (287) 51
-TRUE (288) 52
-FALSE (289) 53
-AND (290) 45
-NOT (291) 47
-OR (292) 43
-IF (293) 28
-THEN (294) 28
-ELSE (295) 31
-PROC (296) 11
-KOMMA (297) 15 20
+OPEN (274) 11 16 54 67 68
+CLOSE (275) 11 16 54 67 68
+EULER (276) 69
+EXP (277) 64
+ASSIGN (278) 9 42
+VAR (279) 8 9
+BEG (280) 11 26
+END (281) 11 26
+DO (282)
+WHILE (283) 24
+LESS (284) 49
+GREATER (285) 50
+EQUAL (286) 51
+TRUE (287) 52
+FALSE (288) 53
+AND (289) 45
+NOT (290) 47
+OR (291) 43
+IF (292) 28
+THEN (293)
+ELSE (294) 31
+PROC (295) 11
+KOMMA (296) 15 20
 
 
 Nicht-Terminal und die Regeln, in denen sie verwendet werden
 
-$accept (43)
+$accept (42)
     auf der linken Seite: 0
-program (44)
+program (43)
     auf der linken Seite: 1, auf der rechten Seite: 0
-head (45)
+head (44)
     auf der linken Seite: 2, auf der rechten Seite: 1
-tail (46)
+tail (45)
     auf der linken Seite: 3, auf der rechten Seite: 1
-stmtlist (47)
+stmtlist (46)
     auf der linken Seite: 4 5, auf der rechten Seite: 1 5 11 26
-decllist (48)
+decllist (47)
     auf der linken Seite: 6 7, auf der rechten Seite: 1 7 11 26
-decl (49)
+decl (48)
     auf der linken Seite: 8 9 11, auf der rechten Seite: 7
-$@1 (50)
+$@1 (49)
     auf der linken Seite: 10, auf der rechten Seite: 11
-paramlist (51)
+paramlist (50)
     auf der linken Seite: 12 13, auf der rechten Seite: 11
-params (52)
+params (51)
     auf der linken Seite: 14 15, auf der rechten Seite: 13 15
-stmt (53)
+stmt (52)
     auf der linken Seite: 16 21 24 26 29 31 32 33 34 35 36 37 38 39
     40 41 42, auf der rechten Seite: 5 24 28 31
-arglist (54)
+arglist (53)
     auf der linken Seite: 17 18, auf der rechten Seite: 16
-args (55)
+args (54)
     auf der linken Seite: 19 20, auf der rechten Seite: 18 20
-$@2 (56)
+$@2 (55)
     auf der linken Seite: 22, auf der rechten Seite: 24
-$@3 (57)
+$@3 (56)
     auf der linken Seite: 23, auf der rechten Seite: 24
-$@4 (58)
+$@4 (57)
     auf der linken Seite: 25, auf der rechten Seite: 26
-ifpart (59)
+ifpart (58)
     auf der linken Seite: 28, auf der rechten Seite: 29 31
-$@5 (60)
+$@5 (59)
     auf der linken Seite: 27, auf der rechten Seite: 28
-$@6 (61)
+$@6 (60)
     auf der linken Seite: 30, auf der rechten Seite: 31
-bool (62)
+bool (61)
     auf der linken Seite: 43 44, auf der rechten Seite: 24 28 43 54
-bool1 (63)
+bool1 (62)
     auf der linken Seite: 45 46, auf der rechten Seite: 43 44 45
-bool2 (64)
+bool2 (63)
     auf der linken Seite: 47 48, auf der rechten Seite: 45 46
-bool3 (65)
+bool3 (64)
     auf der linken Seite: 49 50 51 52 53 54, auf der rechten Seite:
     47 48
-expr (66)
+expr (65)
     auf der linken Seite: 55 56 57, auf der rechten Seite: 9 19 20
-    33 40 42 49 50 51 56 57 66
-prod (67)
+    33 40 42 49 50 51 56 57 67
+prod (66)
     auf der linken Seite: 58 59, auf der rechten Seite: 55 56 57 59
-unary (68)
-    auf der linken Seite: 60 61, auf der rechten Seite: 58
-exp (69)
-    auf der linken Seite: 62 63, auf der rechten Seite: 59 63
-atomic (70)
-    auf der linken Seite: 64 65 66 67 68 69, auf der rechten Seite:
-    60 61 62 63
+unary (67)
+    auf der linken Seite: 60 61 62, auf der rechten Seite: 58
+exp (68)
+    auf der linken Seite: 63 64, auf der rechten Seite: 59 64
+atomic (69)
+    auf der linken Seite: 65 66 67 68 69 70, auf der rechten Seite:
+    60 61 62 63 64
 
 
 Zustand 0
@@ -353,56 +354,57 @@ Zustand 12
     NUMBER     schiebe und gehe zu Zustand 33 über
     FLOAT      schiebe und gehe zu Zustand 34 über
     ID         schiebe und gehe zu Zustand 35 über
-    MINUS      schiebe und gehe zu Zustand 36 über
-    OPEN       schiebe und gehe zu Zustand 37 über
-    EULER      schiebe und gehe zu Zustand 38 über
+    PLUS       schiebe und gehe zu Zustand 36 über
+    MINUS      schiebe und gehe zu Zustand 37 über
+    OPEN       schiebe und gehe zu Zustand 38 über
+    EULER      schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 39 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 40 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
 Zustand 13
 
    34 stmt: NORTH . SEMICOLON
 
-    SEMICOLON  schiebe und gehe zu Zustand 43 über
+    SEMICOLON  schiebe und gehe zu Zustand 44 über
 
 
 Zustand 14
 
    35 stmt: SOUTH . SEMICOLON
 
-    SEMICOLON  schiebe und gehe zu Zustand 44 über
+    SEMICOLON  schiebe und gehe zu Zustand 45 über
 
 
 Zustand 15
 
    36 stmt: WEST . SEMICOLON
 
-    SEMICOLON  schiebe und gehe zu Zustand 45 über
+    SEMICOLON  schiebe und gehe zu Zustand 46 über
 
 
 Zustand 16
 
    37 stmt: EAST . SEMICOLON
 
-    SEMICOLON  schiebe und gehe zu Zustand 46 über
+    SEMICOLON  schiebe und gehe zu Zustand 47 über
 
 
 Zustand 17
 
    38 stmt: TURNLEFT . SEMICOLON
 
-    SEMICOLON  schiebe und gehe zu Zustand 47 über
+    SEMICOLON  schiebe und gehe zu Zustand 48 über
 
 
 Zustand 18
 
    39 stmt: TURNRIGHT . SEMICOLON
 
-    SEMICOLON  schiebe und gehe zu Zustand 48 über
+    SEMICOLON  schiebe und gehe zu Zustand 49 über
 
 
 Zustand 19
@@ -412,21 +414,22 @@ Zustand 19
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 49 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 50 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
 Zustand 20
 
    41 stmt: THICKNESS . NUMBER SEMICOLON
 
-    NUMBER  schiebe und gehe zu Zustand 50 über
+    NUMBER  schiebe und gehe zu Zustand 51 über
 
 
 Zustand 21
@@ -434,8 +437,8 @@ Zustand 21
    16 stmt: ID . OPEN arglist CLOSE SEMICOLON
    42     | ID . ASSIGN expr SEMICOLON
 
-    OPEN    schiebe und gehe zu Zustand 51 über
-    ASSIGN  schiebe und gehe zu Zustand 52 über
+    OPEN    schiebe und gehe zu Zustand 52 über
+    ASSIGN  schiebe und gehe zu Zustand 53 über
 
 
 Zustand 22
@@ -444,40 +447,41 @@ Zustand 22
 
     $default  reduziere mit Regel 25 ($@4)
 
-    $@4  gehe zu Zustand 53 über
+    $@4  gehe zu Zustand 54 über
 
 
 Zustand 23
 
-   24 stmt: WHILE . $@2 bool $@3 DO stmt
+   24 stmt: WHILE . $@2 bool $@3 stmt
 
     $default  reduziere mit Regel 22 ($@2)
 
-    $@2  gehe zu Zustand 54 über
+    $@2  gehe zu Zustand 55 über
 
 
 Zustand 24
 
-   28 ifpart: IF . bool $@5 THEN stmt
+   28 ifpart: IF . bool $@5 stmt
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 55 über
-    EULER   schiebe und gehe zu Zustand 38 über
-    TRUE    schiebe und gehe zu Zustand 56 über
-    FALSE   schiebe und gehe zu Zustand 57 über
-    NOT     schiebe und gehe zu Zustand 58 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 56 über
+    EULER   schiebe und gehe zu Zustand 39 über
+    TRUE    schiebe und gehe zu Zustand 57 über
+    FALSE   schiebe und gehe zu Zustand 58 über
+    NOT     schiebe und gehe zu Zustand 59 über
 
-    bool    gehe zu Zustand 59 über
-    bool1   gehe zu Zustand 60 über
-    bool2   gehe zu Zustand 61 über
-    bool3   gehe zu Zustand 62 über
-    expr    gehe zu Zustand 63 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    bool    gehe zu Zustand 60 über
+    bool1   gehe zu Zustand 61 über
+    bool2   gehe zu Zustand 62 über
+    bool3   gehe zu Zustand 63 über
+    expr    gehe zu Zustand 64 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
 Zustand 25
@@ -499,7 +503,7 @@ Zustand 27
    29 stmt: ifpart .
    31     | ifpart . ELSE $@6 stmt
 
-    ELSE  schiebe und gehe zu Zustand 64 über
+    ELSE  schiebe und gehe zu Zustand 65 über
 
     ELSE      [reduziere mit Regel 29 (stmt)]
     $default  reduziere mit Regel 29 (stmt)
@@ -519,21 +523,22 @@ Zustand 29
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 65 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 66 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
 Zustand 30
 
    11 decl: PROC ID $@1 . OPEN paramlist CLOSE BEG decllist stmtlist END
 
-    OPEN  schiebe und gehe zu Zustand 66 über
+    OPEN  schiebe und gehe zu Zustand 67 über
 
 
 Zustand 31
@@ -552,328 +557,347 @@ Zustand 32
 
 Zustand 33
 
-   64 atomic: NUMBER .
-
-    $default  reduziere mit Regel 64 (atomic)
-
-
-Zustand 34
-
-   65 atomic: FLOAT .
+   65 atomic: NUMBER .
 
     $default  reduziere mit Regel 65 (atomic)
 
 
+Zustand 34
+
+   66 atomic: FLOAT .
+
+    $default  reduziere mit Regel 66 (atomic)
+
+
 Zustand 35
 
-   69 atomic: ID .
+   70 atomic: ID .
 
-    $default  reduziere mit Regel 69 (atomic)
+    $default  reduziere mit Regel 70 (atomic)
 
 
 Zustand 36
+
+   62 unary: PLUS . atomic
+
+    NUMBER  schiebe und gehe zu Zustand 33 über
+    FLOAT   schiebe und gehe zu Zustand 34 über
+    ID      schiebe und gehe zu Zustand 35 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
+
+    atomic  gehe zu Zustand 68 über
+
+
+Zustand 37
 
    61 unary: MINUS . atomic
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    atomic  gehe zu Zustand 67 über
-
-
-Zustand 37
-
-   66 atomic: OPEN . expr CLOSE
-   67       | OPEN . error CLOSE
-
-    error   schiebe und gehe zu Zustand 68 über
-    NUMBER  schiebe und gehe zu Zustand 33 über
-    FLOAT   schiebe und gehe zu Zustand 34 über
-    ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
-
-    expr    gehe zu Zustand 69 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 69 über
 
 
 Zustand 38
 
-   68 atomic: EULER .
+   67 atomic: OPEN . expr CLOSE
+   68       | OPEN . error CLOSE
 
-    $default  reduziere mit Regel 68 (atomic)
+    error   schiebe und gehe zu Zustand 70 über
+    NUMBER  schiebe und gehe zu Zustand 33 über
+    FLOAT   schiebe und gehe zu Zustand 34 über
+    ID      schiebe und gehe zu Zustand 35 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
+
+    expr    gehe zu Zustand 71 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
 Zustand 39
+
+   69 atomic: EULER .
+
+    $default  reduziere mit Regel 69 (atomic)
+
+
+Zustand 40
 
    33 stmt: GO expr . SEMICOLON
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    SEMICOLON  schiebe und gehe zu Zustand 70 über
-    PLUS       schiebe und gehe zu Zustand 71 über
-    MINUS      schiebe und gehe zu Zustand 72 über
+    SEMICOLON  schiebe und gehe zu Zustand 72 über
+    PLUS       schiebe und gehe zu Zustand 73 über
+    MINUS      schiebe und gehe zu Zustand 74 über
 
 
-Zustand 40
+Zustand 41
 
    55 expr: prod .
    59 prod: prod . TIMES exp
 
-    TIMES  schiebe und gehe zu Zustand 73 über
+    TIMES  schiebe und gehe zu Zustand 75 über
 
     $default  reduziere mit Regel 55 (expr)
 
 
-Zustand 41
+Zustand 42
 
    58 prod: unary .
 
     $default  reduziere mit Regel 58 (prod)
 
 
-Zustand 42
+Zustand 43
 
    60 unary: atomic .
 
     $default  reduziere mit Regel 60 (unary)
 
 
-Zustand 43
+Zustand 44
 
    34 stmt: NORTH SEMICOLON .
 
     $default  reduziere mit Regel 34 (stmt)
 
 
-Zustand 44
+Zustand 45
 
    35 stmt: SOUTH SEMICOLON .
 
     $default  reduziere mit Regel 35 (stmt)
 
 
-Zustand 45
+Zustand 46
 
    36 stmt: WEST SEMICOLON .
 
     $default  reduziere mit Regel 36 (stmt)
 
 
-Zustand 46
+Zustand 47
 
    37 stmt: EAST SEMICOLON .
 
     $default  reduziere mit Regel 37 (stmt)
 
 
-Zustand 47
+Zustand 48
 
    38 stmt: TURNLEFT SEMICOLON .
 
     $default  reduziere mit Regel 38 (stmt)
 
 
-Zustand 48
+Zustand 49
 
    39 stmt: TURNRIGHT SEMICOLON .
 
     $default  reduziere mit Regel 39 (stmt)
 
 
-Zustand 49
+Zustand 50
 
    40 stmt: TURN expr . SEMICOLON
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    SEMICOLON  schiebe und gehe zu Zustand 74 über
-    PLUS       schiebe und gehe zu Zustand 71 über
-    MINUS      schiebe und gehe zu Zustand 72 über
-
-
-Zustand 50
-
-   41 stmt: THICKNESS NUMBER . SEMICOLON
-
-    SEMICOLON  schiebe und gehe zu Zustand 75 über
+    SEMICOLON  schiebe und gehe zu Zustand 76 über
+    PLUS       schiebe und gehe zu Zustand 73 über
+    MINUS      schiebe und gehe zu Zustand 74 über
 
 
 Zustand 51
+
+   41 stmt: THICKNESS NUMBER . SEMICOLON
+
+    SEMICOLON  schiebe und gehe zu Zustand 77 über
+
+
+Zustand 52
 
    16 stmt: ID OPEN . arglist CLOSE SEMICOLON
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
     $default  reduziere mit Regel 17 (arglist)
 
-    arglist  gehe zu Zustand 76 über
-    args     gehe zu Zustand 77 über
-    expr     gehe zu Zustand 78 über
-    prod     gehe zu Zustand 40 über
-    unary    gehe zu Zustand 41 über
-    atomic   gehe zu Zustand 42 über
+    arglist  gehe zu Zustand 78 über
+    args     gehe zu Zustand 79 über
+    expr     gehe zu Zustand 80 über
+    prod     gehe zu Zustand 41 über
+    unary    gehe zu Zustand 42 über
+    atomic   gehe zu Zustand 43 über
 
 
-Zustand 52
+Zustand 53
 
    42 stmt: ID ASSIGN . expr SEMICOLON
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 79 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 81 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 53
+Zustand 54
 
    26 stmt: BEG $@4 . decllist stmtlist END
 
     $default  reduziere mit Regel 6 (decllist)
 
-    decllist  gehe zu Zustand 80 über
-
-
-Zustand 54
-
-   24 stmt: WHILE $@2 . bool $@3 DO stmt
-
-    NUMBER  schiebe und gehe zu Zustand 33 über
-    FLOAT   schiebe und gehe zu Zustand 34 über
-    ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 55 über
-    EULER   schiebe und gehe zu Zustand 38 über
-    TRUE    schiebe und gehe zu Zustand 56 über
-    FALSE   schiebe und gehe zu Zustand 57 über
-    NOT     schiebe und gehe zu Zustand 58 über
-
-    bool    gehe zu Zustand 81 über
-    bool1   gehe zu Zustand 60 über
-    bool2   gehe zu Zustand 61 über
-    bool3   gehe zu Zustand 62 über
-    expr    gehe zu Zustand 63 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    decllist  gehe zu Zustand 82 über
 
 
 Zustand 55
 
-   54 bool3: OPEN . bool CLOSE
-   66 atomic: OPEN . expr CLOSE
-   67       | OPEN . error CLOSE
+   24 stmt: WHILE $@2 . bool $@3 stmt
 
-    error   schiebe und gehe zu Zustand 68 über
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 55 über
-    EULER   schiebe und gehe zu Zustand 38 über
-    TRUE    schiebe und gehe zu Zustand 56 über
-    FALSE   schiebe und gehe zu Zustand 57 über
-    NOT     schiebe und gehe zu Zustand 58 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 56 über
+    EULER   schiebe und gehe zu Zustand 39 über
+    TRUE    schiebe und gehe zu Zustand 57 über
+    FALSE   schiebe und gehe zu Zustand 58 über
+    NOT     schiebe und gehe zu Zustand 59 über
 
-    bool    gehe zu Zustand 82 über
-    bool1   gehe zu Zustand 60 über
-    bool2   gehe zu Zustand 61 über
-    bool3   gehe zu Zustand 62 über
-    expr    gehe zu Zustand 83 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    bool    gehe zu Zustand 83 über
+    bool1   gehe zu Zustand 61 über
+    bool2   gehe zu Zustand 62 über
+    bool3   gehe zu Zustand 63 über
+    expr    gehe zu Zustand 64 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
 Zustand 56
+
+   54 bool3: OPEN . bool CLOSE
+   67 atomic: OPEN . expr CLOSE
+   68       | OPEN . error CLOSE
+
+    error   schiebe und gehe zu Zustand 70 über
+    NUMBER  schiebe und gehe zu Zustand 33 über
+    FLOAT   schiebe und gehe zu Zustand 34 über
+    ID      schiebe und gehe zu Zustand 35 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 56 über
+    EULER   schiebe und gehe zu Zustand 39 über
+    TRUE    schiebe und gehe zu Zustand 57 über
+    FALSE   schiebe und gehe zu Zustand 58 über
+    NOT     schiebe und gehe zu Zustand 59 über
+
+    bool    gehe zu Zustand 84 über
+    bool1   gehe zu Zustand 61 über
+    bool2   gehe zu Zustand 62 über
+    bool3   gehe zu Zustand 63 über
+    expr    gehe zu Zustand 85 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
+
+
+Zustand 57
 
    52 bool3: TRUE .
 
     $default  reduziere mit Regel 52 (bool3)
 
 
-Zustand 57
+Zustand 58
 
    53 bool3: FALSE .
 
     $default  reduziere mit Regel 53 (bool3)
 
 
-Zustand 58
+Zustand 59
 
    47 bool2: NOT . bool3
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 55 über
-    EULER   schiebe und gehe zu Zustand 38 über
-    TRUE    schiebe und gehe zu Zustand 56 über
-    FALSE   schiebe und gehe zu Zustand 57 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 56 über
+    EULER   schiebe und gehe zu Zustand 39 über
+    TRUE    schiebe und gehe zu Zustand 57 über
+    FALSE   schiebe und gehe zu Zustand 58 über
 
-    bool3   gehe zu Zustand 84 über
-    expr    gehe zu Zustand 63 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
-
-
-Zustand 59
-
-   28 ifpart: IF bool . $@5 THEN stmt
-   43 bool: bool . OR bool1
-
-    OR  schiebe und gehe zu Zustand 85 über
-
-    $default  reduziere mit Regel 27 ($@5)
-
-    $@5  gehe zu Zustand 86 über
+    bool3   gehe zu Zustand 86 über
+    expr    gehe zu Zustand 64 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
 Zustand 60
 
+   28 ifpart: IF bool . $@5 stmt
+   43 bool: bool . OR bool1
+
+    OR  schiebe und gehe zu Zustand 87 über
+
+    $default  reduziere mit Regel 27 ($@5)
+
+    $@5  gehe zu Zustand 88 über
+
+
+Zustand 61
+
    44 bool: bool1 .
    45 bool1: bool1 . AND bool2
 
-    AND  schiebe und gehe zu Zustand 87 über
+    AND  schiebe und gehe zu Zustand 89 über
 
     $default  reduziere mit Regel 44 (bool)
 
 
-Zustand 61
+Zustand 62
 
    46 bool1: bool2 .
 
     $default  reduziere mit Regel 46 (bool1)
 
 
-Zustand 62
+Zustand 63
 
    48 bool2: bool3 .
 
     $default  reduziere mit Regel 48 (bool2)
 
 
-Zustand 63
+Zustand 64
 
    49 bool3: expr . LESS expr
    50      | expr . GREATER expr
@@ -881,178 +905,187 @@ Zustand 63
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    PLUS     schiebe und gehe zu Zustand 71 über
-    MINUS    schiebe und gehe zu Zustand 72 über
-    LESS     schiebe und gehe zu Zustand 88 über
-    GREATER  schiebe und gehe zu Zustand 89 über
-    EQUAL    schiebe und gehe zu Zustand 90 über
+    PLUS     schiebe und gehe zu Zustand 73 über
+    MINUS    schiebe und gehe zu Zustand 74 über
+    LESS     schiebe und gehe zu Zustand 90 über
+    GREATER  schiebe und gehe zu Zustand 91 über
+    EQUAL    schiebe und gehe zu Zustand 92 über
 
 
-Zustand 64
+Zustand 65
 
    31 stmt: ifpart ELSE . $@6 stmt
 
     $default  reduziere mit Regel 30 ($@6)
 
-    $@6  gehe zu Zustand 91 über
+    $@6  gehe zu Zustand 93 über
 
 
-Zustand 65
+Zustand 66
 
     9 decl: VAR ID ASSIGN expr . SEMICOLON
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    SEMICOLON  schiebe und gehe zu Zustand 92 über
-    PLUS       schiebe und gehe zu Zustand 71 über
-    MINUS      schiebe und gehe zu Zustand 72 über
-
-
-Zustand 66
-
-   11 decl: PROC ID $@1 OPEN . paramlist CLOSE BEG decllist stmtlist END
-
-    ID  schiebe und gehe zu Zustand 93 über
-
-    $default  reduziere mit Regel 12 (paramlist)
-
-    paramlist  gehe zu Zustand 94 über
-    params     gehe zu Zustand 95 über
+    SEMICOLON  schiebe und gehe zu Zustand 94 über
+    PLUS       schiebe und gehe zu Zustand 73 über
+    MINUS      schiebe und gehe zu Zustand 74 über
 
 
 Zustand 67
+
+   11 decl: PROC ID $@1 OPEN . paramlist CLOSE BEG decllist stmtlist END
+
+    ID  schiebe und gehe zu Zustand 95 über
+
+    $default  reduziere mit Regel 12 (paramlist)
+
+    paramlist  gehe zu Zustand 96 über
+    params     gehe zu Zustand 97 über
+
+
+Zustand 68
+
+   62 unary: PLUS atomic .
+
+    $default  reduziere mit Regel 62 (unary)
+
+
+Zustand 69
 
    61 unary: MINUS atomic .
 
     $default  reduziere mit Regel 61 (unary)
 
 
-Zustand 68
+Zustand 70
 
-   67 atomic: OPEN error . CLOSE
+   68 atomic: OPEN error . CLOSE
 
-    CLOSE  schiebe und gehe zu Zustand 96 über
+    CLOSE  schiebe und gehe zu Zustand 98 über
 
 
-Zustand 69
+Zustand 71
 
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
-   66 atomic: OPEN expr . CLOSE
+   67 atomic: OPEN expr . CLOSE
 
-    PLUS   schiebe und gehe zu Zustand 71 über
-    MINUS  schiebe und gehe zu Zustand 72 über
-    CLOSE  schiebe und gehe zu Zustand 97 über
+    PLUS   schiebe und gehe zu Zustand 73 über
+    MINUS  schiebe und gehe zu Zustand 74 über
+    CLOSE  schiebe und gehe zu Zustand 99 über
 
 
-Zustand 70
+Zustand 72
 
    33 stmt: GO expr SEMICOLON .
 
     $default  reduziere mit Regel 33 (stmt)
 
 
-Zustand 71
+Zustand 73
 
    56 expr: expr PLUS . prod
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    prod    gehe zu Zustand 98 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    prod    gehe zu Zustand 100 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 72
+Zustand 74
 
    57 expr: expr MINUS . prod
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    prod    gehe zu Zustand 99 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    prod    gehe zu Zustand 101 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 73
+Zustand 75
 
    59 prod: prod TIMES . exp
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    exp     gehe zu Zustand 100 über
-    atomic  gehe zu Zustand 101 über
+    exp     gehe zu Zustand 102 über
+    atomic  gehe zu Zustand 103 über
 
 
-Zustand 74
+Zustand 76
 
    40 stmt: TURN expr SEMICOLON .
 
     $default  reduziere mit Regel 40 (stmt)
 
 
-Zustand 75
+Zustand 77
 
    41 stmt: THICKNESS NUMBER SEMICOLON .
 
     $default  reduziere mit Regel 41 (stmt)
 
 
-Zustand 76
+Zustand 78
 
    16 stmt: ID OPEN arglist . CLOSE SEMICOLON
 
-    CLOSE  schiebe und gehe zu Zustand 102 über
+    CLOSE  schiebe und gehe zu Zustand 104 über
 
 
-Zustand 77
+Zustand 79
 
    18 arglist: args .
    20 args: args . KOMMA expr
 
-    KOMMA  schiebe und gehe zu Zustand 103 über
+    KOMMA  schiebe und gehe zu Zustand 105 über
 
     $default  reduziere mit Regel 18 (arglist)
 
 
-Zustand 78
+Zustand 80
 
    19 args: expr .
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    PLUS   schiebe und gehe zu Zustand 71 über
-    MINUS  schiebe und gehe zu Zustand 72 über
+    PLUS   schiebe und gehe zu Zustand 73 über
+    MINUS  schiebe und gehe zu Zustand 74 über
 
     $default  reduziere mit Regel 19 (args)
 
 
-Zustand 79
+Zustand 81
 
    42 stmt: ID ASSIGN expr . SEMICOLON
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    SEMICOLON  schiebe und gehe zu Zustand 104 über
-    PLUS       schiebe und gehe zu Zustand 71 über
-    MINUS      schiebe und gehe zu Zustand 72 über
+    SEMICOLON  schiebe und gehe zu Zustand 106 über
+    PLUS       schiebe und gehe zu Zustand 73 über
+    MINUS      schiebe und gehe zu Zustand 74 über
 
 
-Zustand 80
+Zustand 82
 
     7 decllist: decllist . decl
    26 stmt: BEG $@4 decllist . stmtlist END
@@ -1062,159 +1095,180 @@ Zustand 80
 
     $default  reduziere mit Regel 4 (stmtlist)
 
-    stmtlist  gehe zu Zustand 105 über
+    stmtlist  gehe zu Zustand 107 über
     decl      gehe zu Zustand 8 über
 
 
-Zustand 81
+Zustand 83
 
-   24 stmt: WHILE $@2 bool . $@3 DO stmt
+   24 stmt: WHILE $@2 bool . $@3 stmt
    43 bool: bool . OR bool1
 
-    OR  schiebe und gehe zu Zustand 85 über
+    OR  schiebe und gehe zu Zustand 87 über
 
     $default  reduziere mit Regel 23 ($@3)
 
-    $@3  gehe zu Zustand 106 über
+    $@3  gehe zu Zustand 108 über
 
 
-Zustand 82
+Zustand 84
 
    43 bool: bool . OR bool1
    54 bool3: OPEN bool . CLOSE
 
-    CLOSE  schiebe und gehe zu Zustand 107 über
-    OR     schiebe und gehe zu Zustand 85 über
+    CLOSE  schiebe und gehe zu Zustand 109 über
+    OR     schiebe und gehe zu Zustand 87 über
 
 
-Zustand 83
+Zustand 85
 
    49 bool3: expr . LESS expr
    50      | expr . GREATER expr
    51      | expr . EQUAL expr
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
-   66 atomic: OPEN expr . CLOSE
+   67 atomic: OPEN expr . CLOSE
 
-    PLUS     schiebe und gehe zu Zustand 71 über
-    MINUS    schiebe und gehe zu Zustand 72 über
-    CLOSE    schiebe und gehe zu Zustand 97 über
-    LESS     schiebe und gehe zu Zustand 88 über
-    GREATER  schiebe und gehe zu Zustand 89 über
-    EQUAL    schiebe und gehe zu Zustand 90 über
+    PLUS     schiebe und gehe zu Zustand 73 über
+    MINUS    schiebe und gehe zu Zustand 74 über
+    CLOSE    schiebe und gehe zu Zustand 99 über
+    LESS     schiebe und gehe zu Zustand 90 über
+    GREATER  schiebe und gehe zu Zustand 91 über
+    EQUAL    schiebe und gehe zu Zustand 92 über
 
 
-Zustand 84
+Zustand 86
 
    47 bool2: NOT bool3 .
 
     $default  reduziere mit Regel 47 (bool2)
 
 
-Zustand 85
+Zustand 87
 
    43 bool: bool OR . bool1
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 55 über
-    EULER   schiebe und gehe zu Zustand 38 über
-    TRUE    schiebe und gehe zu Zustand 56 über
-    FALSE   schiebe und gehe zu Zustand 57 über
-    NOT     schiebe und gehe zu Zustand 58 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 56 über
+    EULER   schiebe und gehe zu Zustand 39 über
+    TRUE    schiebe und gehe zu Zustand 57 über
+    FALSE   schiebe und gehe zu Zustand 58 über
+    NOT     schiebe und gehe zu Zustand 59 über
 
-    bool1   gehe zu Zustand 108 über
-    bool2   gehe zu Zustand 61 über
-    bool3   gehe zu Zustand 62 über
-    expr    gehe zu Zustand 63 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
-
-
-Zustand 86
-
-   28 ifpart: IF bool $@5 . THEN stmt
-
-    THEN  schiebe und gehe zu Zustand 109 über
+    bool1   gehe zu Zustand 110 über
+    bool2   gehe zu Zustand 62 über
+    bool3   gehe zu Zustand 63 über
+    expr    gehe zu Zustand 64 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 87
+Zustand 88
+
+   28 ifpart: IF bool $@5 . stmt
+
+    error      schiebe und gehe zu Zustand 11 über
+    GO         schiebe und gehe zu Zustand 12 über
+    NORTH      schiebe und gehe zu Zustand 13 über
+    SOUTH      schiebe und gehe zu Zustand 14 über
+    WEST       schiebe und gehe zu Zustand 15 über
+    EAST       schiebe und gehe zu Zustand 16 über
+    TURNLEFT   schiebe und gehe zu Zustand 17 über
+    TURNRIGHT  schiebe und gehe zu Zustand 18 über
+    TURN       schiebe und gehe zu Zustand 19 über
+    THICKNESS  schiebe und gehe zu Zustand 20 über
+    ID         schiebe und gehe zu Zustand 21 über
+    BEG        schiebe und gehe zu Zustand 22 über
+    WHILE      schiebe und gehe zu Zustand 23 über
+    IF         schiebe und gehe zu Zustand 24 über
+
+    stmt    gehe zu Zustand 111 über
+    ifpart  gehe zu Zustand 27 über
+
+
+Zustand 89
 
    45 bool1: bool1 AND . bool2
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 55 über
-    EULER   schiebe und gehe zu Zustand 38 über
-    TRUE    schiebe und gehe zu Zustand 56 über
-    FALSE   schiebe und gehe zu Zustand 57 über
-    NOT     schiebe und gehe zu Zustand 58 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 56 über
+    EULER   schiebe und gehe zu Zustand 39 über
+    TRUE    schiebe und gehe zu Zustand 57 über
+    FALSE   schiebe und gehe zu Zustand 58 über
+    NOT     schiebe und gehe zu Zustand 59 über
 
-    bool2   gehe zu Zustand 110 über
-    bool3   gehe zu Zustand 62 über
-    expr    gehe zu Zustand 63 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    bool2   gehe zu Zustand 112 über
+    bool3   gehe zu Zustand 63 über
+    expr    gehe zu Zustand 64 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 88
+Zustand 90
 
    49 bool3: expr LESS . expr
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 111 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 113 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 89
+Zustand 91
 
    50 bool3: expr GREATER . expr
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 112 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 114 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 90
+Zustand 92
 
    51 bool3: expr EQUAL . expr
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 113 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 115 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 91
+Zustand 93
 
    31 stmt: ifpart ELSE $@6 . stmt
 
@@ -1233,124 +1287,125 @@ Zustand 91
     WHILE      schiebe und gehe zu Zustand 23 über
     IF         schiebe und gehe zu Zustand 24 über
 
-    stmt    gehe zu Zustand 114 über
+    stmt    gehe zu Zustand 116 über
     ifpart  gehe zu Zustand 27 über
 
 
-Zustand 92
+Zustand 94
 
     9 decl: VAR ID ASSIGN expr SEMICOLON .
 
     $default  reduziere mit Regel 9 (decl)
 
 
-Zustand 93
+Zustand 95
 
    14 params: ID .
    15       | ID . KOMMA params
 
-    KOMMA  schiebe und gehe zu Zustand 115 über
+    KOMMA  schiebe und gehe zu Zustand 117 über
 
     $default  reduziere mit Regel 14 (params)
 
 
-Zustand 94
+Zustand 96
 
    11 decl: PROC ID $@1 OPEN paramlist . CLOSE BEG decllist stmtlist END
 
-    CLOSE  schiebe und gehe zu Zustand 116 über
+    CLOSE  schiebe und gehe zu Zustand 118 über
 
 
-Zustand 95
+Zustand 97
 
    13 paramlist: params .
 
     $default  reduziere mit Regel 13 (paramlist)
 
 
-Zustand 96
-
-   67 atomic: OPEN error CLOSE .
-
-    $default  reduziere mit Regel 67 (atomic)
-
-
-Zustand 97
-
-   66 atomic: OPEN expr CLOSE .
-
-    $default  reduziere mit Regel 66 (atomic)
-
-
 Zustand 98
 
-   56 expr: expr PLUS prod .
-   59 prod: prod . TIMES exp
+   68 atomic: OPEN error CLOSE .
 
-    TIMES  schiebe und gehe zu Zustand 73 über
-
-    $default  reduziere mit Regel 56 (expr)
+    $default  reduziere mit Regel 68 (atomic)
 
 
 Zustand 99
 
+   67 atomic: OPEN expr CLOSE .
+
+    $default  reduziere mit Regel 67 (atomic)
+
+
+Zustand 100
+
+   56 expr: expr PLUS prod .
+   59 prod: prod . TIMES exp
+
+    TIMES  schiebe und gehe zu Zustand 75 über
+
+    $default  reduziere mit Regel 56 (expr)
+
+
+Zustand 101
+
    57 expr: expr MINUS prod .
    59 prod: prod . TIMES exp
 
-    TIMES  schiebe und gehe zu Zustand 73 über
+    TIMES  schiebe und gehe zu Zustand 75 über
 
     $default  reduziere mit Regel 57 (expr)
 
 
-Zustand 100
+Zustand 102
 
    59 prod: prod TIMES exp .
 
     $default  reduziere mit Regel 59 (prod)
 
 
-Zustand 101
+Zustand 103
 
-   62 exp: atomic .
-   63    | atomic . EXP exp
+   63 exp: atomic .
+   64    | atomic . EXP exp
 
-    EXP  schiebe und gehe zu Zustand 117 über
+    EXP  schiebe und gehe zu Zustand 119 über
 
-    $default  reduziere mit Regel 62 (exp)
+    $default  reduziere mit Regel 63 (exp)
 
 
-Zustand 102
+Zustand 104
 
    16 stmt: ID OPEN arglist CLOSE . SEMICOLON
 
-    SEMICOLON  schiebe und gehe zu Zustand 118 über
+    SEMICOLON  schiebe und gehe zu Zustand 120 über
 
 
-Zustand 103
+Zustand 105
 
    20 args: args KOMMA . expr
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    MINUS   schiebe und gehe zu Zustand 36 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    PLUS    schiebe und gehe zu Zustand 36 über
+    MINUS   schiebe und gehe zu Zustand 37 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    expr    gehe zu Zustand 119 über
-    prod    gehe zu Zustand 40 über
-    unary   gehe zu Zustand 41 über
-    atomic  gehe zu Zustand 42 über
+    expr    gehe zu Zustand 121 über
+    prod    gehe zu Zustand 41 über
+    unary   gehe zu Zustand 42 über
+    atomic  gehe zu Zustand 43 über
 
 
-Zustand 104
+Zustand 106
 
    42 stmt: ID ASSIGN expr SEMICOLON .
 
     $default  reduziere mit Regel 42 (stmt)
 
 
-Zustand 105
+Zustand 107
 
     5 stmtlist: stmtlist . stmt
    26 stmt: BEG $@4 decllist stmtlist . END
@@ -1367,7 +1422,7 @@ Zustand 105
     THICKNESS  schiebe und gehe zu Zustand 20 über
     ID         schiebe und gehe zu Zustand 21 über
     BEG        schiebe und gehe zu Zustand 22 über
-    END        schiebe und gehe zu Zustand 120 über
+    END        schiebe und gehe zu Zustand 122 über
     WHILE      schiebe und gehe zu Zustand 23 über
     IF         schiebe und gehe zu Zustand 24 über
 
@@ -1375,197 +1430,174 @@ Zustand 105
     ifpart  gehe zu Zustand 27 über
 
 
-Zustand 106
+Zustand 108
 
-   24 stmt: WHILE $@2 bool $@3 . DO stmt
+   24 stmt: WHILE $@2 bool $@3 . stmt
 
-    DO  schiebe und gehe zu Zustand 121 über
+    error      schiebe und gehe zu Zustand 11 über
+    GO         schiebe und gehe zu Zustand 12 über
+    NORTH      schiebe und gehe zu Zustand 13 über
+    SOUTH      schiebe und gehe zu Zustand 14 über
+    WEST       schiebe und gehe zu Zustand 15 über
+    EAST       schiebe und gehe zu Zustand 16 über
+    TURNLEFT   schiebe und gehe zu Zustand 17 über
+    TURNRIGHT  schiebe und gehe zu Zustand 18 über
+    TURN       schiebe und gehe zu Zustand 19 über
+    THICKNESS  schiebe und gehe zu Zustand 20 über
+    ID         schiebe und gehe zu Zustand 21 über
+    BEG        schiebe und gehe zu Zustand 22 über
+    WHILE      schiebe und gehe zu Zustand 23 über
+    IF         schiebe und gehe zu Zustand 24 über
+
+    stmt    gehe zu Zustand 123 über
+    ifpart  gehe zu Zustand 27 über
 
 
-Zustand 107
+Zustand 109
 
    54 bool3: OPEN bool CLOSE .
 
     $default  reduziere mit Regel 54 (bool3)
 
 
-Zustand 108
+Zustand 110
 
    43 bool: bool OR bool1 .
    45 bool1: bool1 . AND bool2
 
-    AND  schiebe und gehe zu Zustand 87 über
+    AND  schiebe und gehe zu Zustand 89 über
 
     $default  reduziere mit Regel 43 (bool)
 
 
-Zustand 109
+Zustand 111
 
-   28 ifpart: IF bool $@5 THEN . stmt
+   28 ifpart: IF bool $@5 stmt .
 
-    error      schiebe und gehe zu Zustand 11 über
-    GO         schiebe und gehe zu Zustand 12 über
-    NORTH      schiebe und gehe zu Zustand 13 über
-    SOUTH      schiebe und gehe zu Zustand 14 über
-    WEST       schiebe und gehe zu Zustand 15 über
-    EAST       schiebe und gehe zu Zustand 16 über
-    TURNLEFT   schiebe und gehe zu Zustand 17 über
-    TURNRIGHT  schiebe und gehe zu Zustand 18 über
-    TURN       schiebe und gehe zu Zustand 19 über
-    THICKNESS  schiebe und gehe zu Zustand 20 über
-    ID         schiebe und gehe zu Zustand 21 über
-    BEG        schiebe und gehe zu Zustand 22 über
-    WHILE      schiebe und gehe zu Zustand 23 über
-    IF         schiebe und gehe zu Zustand 24 über
-
-    stmt    gehe zu Zustand 122 über
-    ifpart  gehe zu Zustand 27 über
+    $default  reduziere mit Regel 28 (ifpart)
 
 
-Zustand 110
+Zustand 112
 
    45 bool1: bool1 AND bool2 .
 
     $default  reduziere mit Regel 45 (bool1)
 
 
-Zustand 111
+Zustand 113
 
    49 bool3: expr LESS expr .
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    PLUS   schiebe und gehe zu Zustand 71 über
-    MINUS  schiebe und gehe zu Zustand 72 über
+    PLUS   schiebe und gehe zu Zustand 73 über
+    MINUS  schiebe und gehe zu Zustand 74 über
 
     $default  reduziere mit Regel 49 (bool3)
 
 
-Zustand 112
+Zustand 114
 
    50 bool3: expr GREATER expr .
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    PLUS   schiebe und gehe zu Zustand 71 über
-    MINUS  schiebe und gehe zu Zustand 72 über
+    PLUS   schiebe und gehe zu Zustand 73 über
+    MINUS  schiebe und gehe zu Zustand 74 über
 
     $default  reduziere mit Regel 50 (bool3)
 
 
-Zustand 113
+Zustand 115
 
    51 bool3: expr EQUAL expr .
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    PLUS   schiebe und gehe zu Zustand 71 über
-    MINUS  schiebe und gehe zu Zustand 72 über
+    PLUS   schiebe und gehe zu Zustand 73 über
+    MINUS  schiebe und gehe zu Zustand 74 über
 
     $default  reduziere mit Regel 51 (bool3)
 
 
-Zustand 114
+Zustand 116
 
    31 stmt: ifpart ELSE $@6 stmt .
 
     $default  reduziere mit Regel 31 (stmt)
 
 
-Zustand 115
+Zustand 117
 
    15 params: ID KOMMA . params
 
-    ID  schiebe und gehe zu Zustand 93 über
+    ID  schiebe und gehe zu Zustand 95 über
 
-    params  gehe zu Zustand 123 über
+    params  gehe zu Zustand 124 über
 
 
-Zustand 116
+Zustand 118
 
    11 decl: PROC ID $@1 OPEN paramlist CLOSE . BEG decllist stmtlist END
 
-    BEG  schiebe und gehe zu Zustand 124 über
+    BEG  schiebe und gehe zu Zustand 125 über
 
 
-Zustand 117
+Zustand 119
 
-   63 exp: atomic EXP . exp
+   64 exp: atomic EXP . exp
 
     NUMBER  schiebe und gehe zu Zustand 33 über
     FLOAT   schiebe und gehe zu Zustand 34 über
     ID      schiebe und gehe zu Zustand 35 über
-    OPEN    schiebe und gehe zu Zustand 37 über
-    EULER   schiebe und gehe zu Zustand 38 über
+    OPEN    schiebe und gehe zu Zustand 38 über
+    EULER   schiebe und gehe zu Zustand 39 über
 
-    exp     gehe zu Zustand 125 über
-    atomic  gehe zu Zustand 101 über
+    exp     gehe zu Zustand 126 über
+    atomic  gehe zu Zustand 103 über
 
 
-Zustand 118
+Zustand 120
 
    16 stmt: ID OPEN arglist CLOSE SEMICOLON .
 
     $default  reduziere mit Regel 16 (stmt)
 
 
-Zustand 119
+Zustand 121
 
    20 args: args KOMMA expr .
    56 expr: expr . PLUS prod
    57     | expr . MINUS prod
 
-    PLUS   schiebe und gehe zu Zustand 71 über
-    MINUS  schiebe und gehe zu Zustand 72 über
+    PLUS   schiebe und gehe zu Zustand 73 über
+    MINUS  schiebe und gehe zu Zustand 74 über
 
     $default  reduziere mit Regel 20 (args)
 
 
-Zustand 120
+Zustand 122
 
    26 stmt: BEG $@4 decllist stmtlist END .
 
     $default  reduziere mit Regel 26 (stmt)
 
 
-Zustand 121
-
-   24 stmt: WHILE $@2 bool $@3 DO . stmt
-
-    error      schiebe und gehe zu Zustand 11 über
-    GO         schiebe und gehe zu Zustand 12 über
-    NORTH      schiebe und gehe zu Zustand 13 über
-    SOUTH      schiebe und gehe zu Zustand 14 über
-    WEST       schiebe und gehe zu Zustand 15 über
-    EAST       schiebe und gehe zu Zustand 16 über
-    TURNLEFT   schiebe und gehe zu Zustand 17 über
-    TURNRIGHT  schiebe und gehe zu Zustand 18 über
-    TURN       schiebe und gehe zu Zustand 19 über
-    THICKNESS  schiebe und gehe zu Zustand 20 über
-    ID         schiebe und gehe zu Zustand 21 über
-    BEG        schiebe und gehe zu Zustand 22 über
-    WHILE      schiebe und gehe zu Zustand 23 über
-    IF         schiebe und gehe zu Zustand 24 über
-
-    stmt    gehe zu Zustand 126 über
-    ifpart  gehe zu Zustand 27 über
-
-
-Zustand 122
-
-   28 ifpart: IF bool $@5 THEN stmt .
-
-    $default  reduziere mit Regel 28 (ifpart)
-
-
 Zustand 123
+
+   24 stmt: WHILE $@2 bool $@3 stmt .
+
+    $default  reduziere mit Regel 24 (stmt)
+
+
+Zustand 124
 
    15 params: ID KOMMA params .
 
     $default  reduziere mit Regel 15 (params)
 
 
-Zustand 124
+Zustand 125
 
    11 decl: PROC ID $@1 OPEN paramlist CLOSE BEG . decllist stmtlist END
 
@@ -1574,18 +1606,11 @@ Zustand 124
     decllist  gehe zu Zustand 127 über
 
 
-Zustand 125
-
-   63 exp: atomic EXP exp .
-
-    $default  reduziere mit Regel 63 (exp)
-
-
 Zustand 126
 
-   24 stmt: WHILE $@2 bool $@3 DO stmt .
+   64 exp: atomic EXP exp .
 
-    $default  reduziere mit Regel 24 (stmt)
+    $default  reduziere mit Regel 64 (exp)
 
 
 Zustand 127
